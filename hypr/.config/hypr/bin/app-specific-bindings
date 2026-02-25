@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# $ hyprctl binds | nvim
+
+window_class=$(hyprctl activewindow -j | jq -r --arg key "${3:-class}" '.[$key]')
+
+if [[ " ${4:-chromium} " =~ " ${window_class} " ]]; then
+  address=$(hyprctl activewindow -j | jq -r '.address')
+
+  eval "hyprctl dispatch sendshortcut ${1:-CTRL,W},address:${address}"
+  exit 0
+else
+  hyprctl ${2:-dispatch killactive}
+  exit 0
+fi
