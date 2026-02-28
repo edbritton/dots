@@ -1,0 +1,11 @@
+#!/bin/bash
+
+. omarchy-hyprland-workspace-toggle-gaps
+
+if [[ $gaps == "0" ]]; then
+  hyprctl keyword decoration:rounding 8
+  hyprctl keyword decoration:rounding_power 4
+else
+  hyprctl keyword decoration:rounding 0
+  hyprctl keyword decoration:rounding_power 0
+fi
