@@ -2,7 +2,7 @@
   "reload_style_on_change": true,
   "layer": "top",
   "position": "top",
-  "spacing": 0,
+  "spacing": 5,
   "height": 26,
   "modules-left": ["custom/omarchy", "custom/update", "custom/voxtype", "custom/screenrecording-indicator", "custom/idle-indicator", "custom/notification-silencing-indicator"],
   "modules-center": ["hyprland/workspaces"],
@@ -10,7 +10,7 @@
     "group/tray-expander",
     "bluetooth",
     "network",
-    "custom/vpn",
+    "custom/tailscale",
     "pulseaudio",
     "cpu",
     "battery",
@@ -84,10 +84,27 @@
     "spacing": 1,
     "on-click": "omarchy-launch-wifi"
   },
+  "custom/tailscale": {
+    "exec-if": "[[ \"$(iw dev wlan0 link | grep SSID | sed 's/\tSSID: //')\" != \"Home\" || \"$(tailscale status)\" != \"Tailscale is stopped.\" ]] && true || false",
+    "exec": "~/.config/waybar/bin/waybar-tailscale --status",
+    "on-click": "exec ~/.config/waybar/bin/waybar-tailscale --toggle",
+    "exec-on-event": true,
+    "format": "{text}",
+    "format-icons": {
+      "connected": "",
+      "stopped": "",
+      "connecting": "",
+      "disconnecting": ""
+    },
+    "tooltip": true,
+    "return-type": "json",
+    "interval": 3
+  },
   "custom/vpn": {
+    "exec-if": "[[ \"$(iw dev wlan0 link | grep SSID | sed 's/\tSSID: //')\" != \"Home\" || \"$(tailscale status)\" != \"Tailscale is stopped.\" ]] && true || false",
     "exec": "tailscale status --json | jq --unbuffered --compact-output | sed 's/Running/VPN/g' | sed 's/Stopped/\uf512 /g' | sed 's/BackendState/text/g'",
     "return-type": "json",
-    "on-click": "xdg-terminal-exec --app-id=TUI.float -e sudo tsui",
+    "on-click": "[ \"$(tailscale status)\" = \"Tailscale is stopped.\" ] && tailscale up || tailscale down",
     "interval": 3
   },
   "custom/vpn#1": {
