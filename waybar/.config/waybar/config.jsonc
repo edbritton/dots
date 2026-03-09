@@ -13,6 +13,7 @@
     "custom/tailscale",
     "pulseaudio",
     "cpu",
+    "hyprland/language",
     "battery",
     "clock#mac",
     "custom/spotlight"
@@ -22,15 +23,19 @@
     "format": "{icon}",
     "format-icons": {
       "default": "\uebb5",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
       "6": "6",
       "7": "7",
       "8": "8",
       "9": "9",
-      "10": "0",
       "active": "\uebb4",
     },
     "persistent-workspaces": {
-      "*": 5
+      "*": 0
     }
   },
   "custom/omarchy": {
@@ -51,6 +56,11 @@
     "format": " \uf422 ",
     "on-click": "omarchy-launch-walker",
     "tooltip-format": ""
+  },
+  "hyprland/language": {
+    "format": "{}",
+    "format-en": "PC",
+    "format-en-mac": "Mac"
   },
 
   "cpu": {
