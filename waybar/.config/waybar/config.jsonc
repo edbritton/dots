@@ -124,8 +124,8 @@
     "interval": 3
   },
   "battery": {
-    "format-time": "{H}h{m}",
-    "format": "{capacity}% {icon} {time}",
+    "format-time": "{H}h{m}m",
+    "format": "{icon}",
     "!format-discharging": "{icon}",
     "format-discharging-warning": "<span color='red'>{icon} {time}</span>",
     "format-discharging-critical": "<span color='red'>LOW BATTERY!</span>",
@@ -136,8 +136,8 @@
       "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
     "format-full": "󰂅",
-    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
-    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+    "tooltip-format-discharging": "{timeTo} ⋅ {power:>1.0f}W↓ {capacity}%",
+    "tooltip-format-charging": "{timeTo} ⋅ {power:>1.0f}W↑ {capacity}%",
     "interval": 5,
     "on-click": "omarchy-menu power",
     "states": {
