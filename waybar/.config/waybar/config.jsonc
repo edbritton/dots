@@ -19,23 +19,16 @@
     "custom/spotlight"
   ],
   "hyprland/workspaces": {
+    "sort-by": "number",
     "on-click": "activate",
-    "format": "{icon}",
+    "format": "{icon} {name}", 
     "format-icons": {
-      "default": "\uebb5",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9",
-      "active": "\uebb4",
+      "default": "",
+      "active": "",
+      "!default": "\uebb5",
+      "!active": "\uebb4",
     },
     "persistent-workspaces": {
-      "*": 0
     }
   },
   "custom/omarchy": {
@@ -70,9 +63,13 @@
     "on-click-right": "alacritty"
   },
   "clock#mac": {
-    "format": "{:L%H:%M}",
+    "format": "{:L%H:%M %Z}",
     "format-alt": "{:L%d %B W%V %Y}",
-    "tooltip": false,
+    "tooltip-format": "{tz_list}",
+    "timezones": [
+      "Australia/Melbourne",
+      "Europe/London"
+    ],
     "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select"
   },
   "clock": {
