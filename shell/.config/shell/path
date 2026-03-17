@@ -1,9 +1,7 @@
-if [[ -z "$OMARCHY_PATH" ]]; then
-  if [ -d "$HOME/Applications" ] ; then
-    export PATH="$HOME/Applications:$PATH"
-  fi
+if [ -d "$HOME/Applications" ] ; then
+  export PATH="$HOME/Applications:$PATH"
+fi
 
-  if [ -d "$HOME/bin" ] ; then
-    export PATH="$HOME/bin:$PATH"
-  fi
+if [ -d "$HOME/bin" ] ; then
+  export PATH="$HOME/bin:$PATH"
 fi
