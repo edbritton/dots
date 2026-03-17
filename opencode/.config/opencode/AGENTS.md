@@ -63,10 +63,10 @@ These rules take precedence over general git best practices:
 
 ## File System Boundaries (Priority Rules)
 
-- **Allowed Directory**: Only create, edit, or remove files within `~/Work/` subfolders (e.g., `~/Work/my-project`, `~/Work/tries/2026-01-01-experiment`)
-- **Root Forbidden**: Do NOT create, edit, or remove anything directly in `~/Work/` (the folder itself) or any path outside `~/Work/`
-- **Ask First**: If you need to modify files outside `~/Work/`, ALWAYS ask for permission first
-- **Log External Changes**: Any modifications outside `~/Work/` must be logged in `~/Work/OUTOFBOUNDS.md`. Include:
+- **Allowed Directory**: Only create, edit, or remove files within `~/Code/` subfolders (e.g., `~/Code/my-project`, `~/Code/tries/2026-01-01-experiment`)
+- **Root Forbidden**: Do NOT create, edit, or remove anything directly in `~/Code/` (the folder itself) or any path outside `~/Code/`
+- **Ask First**: If you need to modify files outside `~/Code/`, ALWAYS ask for permission first
+- **Log External Changes**: Any modifications outside `~/Code/` must be logged in `~/Code/OUTOFBOUNDS.md`. Include:
   - Timestamp (when the change happened)
   - What changed (file/folder path and action taken)
   - Who made the change (AI or user)
@@ -79,8 +79,8 @@ These rules take precedence over general git best practices:
 ## Project Setup
 
 - **Valid Projects Only**: Only work on projects in one of these locations:
-  - Existing projects in `~/Work/...`
-  - New "try" experiments - use the `try` command to create fresh directories (defaults to `~/Work/tries/YYYY-MM-DD-name`)
+  - Existing projects in `~/Code/...`
+  - New "try" experiments - use the `try` command to create fresh directories (defaults to `~/Code/tries/YYYY-MM-DD-name`)
 - **No System Installs**: Never install packages on the host system. Use `mise.toml` in the project directory for all dependencies
 - **System Packages**: If a package requires installation on the host system, STOP and inform the user. We may need to use a container instead
 
