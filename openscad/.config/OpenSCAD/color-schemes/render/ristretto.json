@@ -1,0 +1,18 @@
+{
+  "colors": {
+    "axes-color": "#948a8b",
+    "background": "#2c2525",
+    "cgal-edge-2d": "#adda78",
+    "cgal-edge-back": "#adda78",
+    "cgal-edge-front": "#adda78",
+    "cgal-face-2d": "#bebffd",
+    "cgal-face-back": "#fd6883",
+    "cgal-face-front": "#bebffd",
+    "crosshair": "#72696a",
+    "opencsg-face-back": "#fd6883",
+    "opencsg-face-front": "#bebffd"
+  },
+  "index": 2000,
+  "name": "ristretto",
+  "show-in-gui": true
+}

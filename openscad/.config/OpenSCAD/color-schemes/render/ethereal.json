@@ -1,0 +1,18 @@
+{
+  "colors": {
+    "axes-color": "#6d7db6",
+    "background": "#060B1E",
+    "cgal-edge-2d": "#92a593",
+    "cgal-edge-back": "#92a593",
+    "cgal-edge-front": "#92a593",
+    "cgal-face-2d": "#ead7e7",
+    "cgal-face-back": "#ED5B5A",
+    "cgal-face-front": "#ead7e7",
+    "crosshair": "#060B1E",
+    "opencsg-face-back": "#ED5B5A",
+    "opencsg-face-front": "#ead7e7"
+  },
+  "index": 2000,
+  "name": "ethereal",
+  "show-in-gui": true
+}

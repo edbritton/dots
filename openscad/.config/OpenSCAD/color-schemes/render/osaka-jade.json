@@ -1,0 +1,18 @@
+{
+  "colors": {
+    "axes-color": "#53685B",
+    "background": "#111c18",
+    "cgal-edge-2d": "#549e6a",
+    "cgal-edge-back": "#549e6a",
+    "cgal-edge-front": "#549e6a",
+    "cgal-face-2d": "#75bbb3",
+    "cgal-face-back": "#FF5345",
+    "cgal-face-front": "#75bbb3",
+    "crosshair": "#23372B",
+    "opencsg-face-back": "#FF5345",
+    "opencsg-face-front": "#75bbb3"
+  },
+  "index": 2000,
+  "name": "osaka-jade",
+  "show-in-gui": true
+}

@@ -1,0 +1,18 @@
+{
+  "colors": {
+    "axes-color": "#6272a4",
+    "background": "#282a36",
+    "cgal-edge-2d": "#8be9fd",
+    "cgal-edge-back": "#8be9fd",
+    "cgal-edge-front": "#8be9fd",
+    "cgal-face-2d": "#bd93f9",
+    "cgal-face-back": "#ff79c6",
+    "cgal-face-front": "#bd93f9",
+    "crosshair": "#44475a",
+    "opencsg-face-back": "#ff79c6",
+    "opencsg-face-front": "#bd93f9"
+  },
+  "index": 2000,
+  "name": "Transylvania",
+  "show-in-gui": true
+}

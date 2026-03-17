@@ -1,0 +1,18 @@
+{
+  "colors": {
+    "axes-color": "#475258",
+    "background": "#2d353b",
+    "cgal-edge-2d": "#a7c080",
+    "cgal-edge-back": "#a7c080",
+    "cgal-edge-front": "#a7c080",
+    "cgal-face-2d": "#d699b6",
+    "cgal-face-back": "#e67e80",
+    "cgal-face-front": "#d699b6",
+    "crosshair": "#475258",
+    "opencsg-face-back": "#e67e80",
+    "opencsg-face-front": "#d699b6"
+  },
+  "index": 2000,
+  "name": "everforest",
+  "show-in-gui": true
+}

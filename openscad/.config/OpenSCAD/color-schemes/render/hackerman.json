@@ -1,0 +1,18 @@
+{
+  "colors": {
+    "axes-color": "#6a6e95",
+    "background": "#0B0C16",
+    "cgal-edge-2d": "#4fe88f",
+    "cgal-edge-back": "#4fe88f",
+    "cgal-edge-front": "#4fe88f",
+    "cgal-face-2d": "#cddbf4",
+    "cgal-face-back": "#50f872",
+    "cgal-face-front": "#cddbf4",
+    "crosshair": "#0B0C16",
+    "opencsg-face-back": "#50f872",
+    "opencsg-face-front": "#cddbf4"
+  },
+  "index": 2000,
+  "name": "hackerman",
+  "show-in-gui": true
+}

@@ -1,0 +1,18 @@
+{
+  "colors": {
+    "axes-color": "#acb0be",
+    "background": "#eff1f5",
+    "cgal-edge-2d": "#40a02b",
+    "cgal-edge-back": "#40a02b",
+    "cgal-edge-front": "#40a02b",
+    "cgal-face-2d": "#ea76cb",
+    "cgal-face-back": "#d20f39",
+    "cgal-face-front": "#ea76cb",
+    "crosshair": "#bcc0cc",
+    "opencsg-face-back": "#d20f39",
+    "opencsg-face-front": "#ea76cb"
+  },
+  "index": 2000,
+  "name": "catppuccin-latte",
+  "show-in-gui": true
+}

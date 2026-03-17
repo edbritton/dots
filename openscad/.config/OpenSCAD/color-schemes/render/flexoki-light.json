@@ -1,0 +1,18 @@
+{
+  "colors": {
+    "axes-color": "#100F0F",
+    "background": "#FFFCF0",
+    "cgal-edge-2d": "#879A39",
+    "cgal-edge-back": "#879A39",
+    "cgal-edge-front": "#879A39",
+    "cgal-face-2d": "#CE5D97",
+    "cgal-face-back": "#D14D41",
+    "cgal-face-front": "#CE5D97",
+    "crosshair": "#100F0F",
+    "opencsg-face-back": "#D14D41",
+    "opencsg-face-front": "#CE5D97"
+  },
+  "index": 2000,
+  "name": "flexoki-light",
+  "show-in-gui": true
+}

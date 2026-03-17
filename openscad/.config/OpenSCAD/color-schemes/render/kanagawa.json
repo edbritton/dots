@@ -1,0 +1,18 @@
+{
+  "colors": {
+    "axes-color": "#727169",
+    "background": "#1f1f28",
+    "cgal-edge-2d": "#76946a",
+    "cgal-edge-back": "#76946a",
+    "cgal-edge-front": "#76946a",
+    "cgal-face-2d": "#938aa9",
+    "cgal-face-back": "#c34043",
+    "cgal-face-front": "#938aa9",
+    "crosshair": "#090618",
+    "opencsg-face-back": "#c34043",
+    "opencsg-face-front": "#938aa9"
+  },
+  "index": 2000,
+  "name": "kanagawa",
+  "show-in-gui": true
+}

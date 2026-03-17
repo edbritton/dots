@@ -1,0 +1,18 @@
+{
+  "colors": {
+    "axes-color": "#666666",
+    "background": "#222222",
+    "cgal-edge-2d": "#5f875f",
+    "cgal-edge-back": "#5f875f",
+    "cgal-edge-front": "#5f875f",
+    "cgal-face-2d": "#bb7744",
+    "cgal-face-back": "#685742",
+    "cgal-face-front": "#bb7744",
+    "crosshair": "#000000",
+    "opencsg-face-back": "#685742",
+    "opencsg-face-front": "#bb7744"
+  },
+  "index": 2000,
+  "name": "miasma",
+  "show-in-gui": true
+}

@@ -1,0 +1,18 @@
+{
+  "colors": {
+    "axes-color": "#c0c0c0",
+    "background": "#ffffff",
+    "cgal-edge-2d": "#3a3a3a",
+    "cgal-edge-back": "#3a3a3a",
+    "cgal-edge-front": "#3a3a3a",
+    "cgal-face-2d": "#2e2e2e",
+    "cgal-face-back": "#2a2a2a",
+    "cgal-face-front": "#2e2e2e",
+    "crosshair": "#ffffff",
+    "opencsg-face-back": "#2a2a2a",
+    "opencsg-face-front": "#2e2e2e"
+  },
+  "index": 2000,
+  "name": "white",
+  "show-in-gui": true
+}

@@ -1,0 +1,18 @@
+{
+  "colors": {
+    "axes-color": "#9893a5",
+    "background": "#faf4ed",
+    "cgal-edge-2d": "#286983",
+    "cgal-edge-back": "#286983",
+    "cgal-edge-front": "#286983",
+    "cgal-face-2d": "#907aa9",
+    "cgal-face-back": "#b4637a",
+    "cgal-face-front": "#907aa9",
+    "crosshair": "#f2e9e1",
+    "opencsg-face-back": "#b4637a",
+    "opencsg-face-front": "#907aa9"
+  },
+  "index": 2000,
+  "name": "rose-pine",
+  "show-in-gui": true
+}

@@ -1,0 +1,18 @@
+{
+  "colors": {
+    "axes-color": "#565f89",
+    "background": "#1a1b26",
+    "cgal-edge-2d": "#7dcfff",
+    "cgal-edge-back": "#7dcfff",
+    "cgal-edge-front": "#7dcfff",
+    "cgal-face-2d": "#bb9af7",
+    "cgal-face-back": "#ff007c",
+    "cgal-face-front": "#bb9af7",
+    "crosshair": "#414868",
+    "opencsg-face-back": "#ff007c",
+    "opencsg-face-front": "#bb9af7"
+  },
+  "index": 2000,
+  "name": "tokyo-night",
+  "show-in-gui": true
+}

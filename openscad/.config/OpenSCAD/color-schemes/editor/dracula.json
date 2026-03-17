@@ -1,0 +1,43 @@
+{
+  "caret": {
+    "foreground": "#f8f8f2",
+    "line-background": "#313442",
+    "width": 2
+  },
+  "colors": {
+    "booleans": "#bd93f9",
+    "comment": "#6272a4",
+    "commentdoc": "#6272a4",
+    "commentdockeyword": "#ff79c6",
+    "commentline": "#6272a4",
+    "edge": "#bd93f9",
+    "error-indicator": "#66ff5555",
+    "error-indicator-outline": "#ff5555",
+    "error-marker": "#ff5555",
+    "functions": "#50fa7b",
+    "keyword1": "#ff79c6",
+    "keyword2": "#8be9fd",
+    "keyword3": "#50fa7b",
+    "keywords": "#ff79c6",
+    "margin-background": "#282a36",
+    "margin-foreground": "#909194",
+    "matched-brace-background": "#44475a",
+    "matched-brace-foreground": "#f8f8f2",
+    "models": "#8be9fd",
+    "number": "#bd93f9",
+    "operator": "#ff79c6",
+    "selection-background": "#44475a",
+    "selection-foreground": "#f8f8f2",
+    "special-variables": "#ff79c6",
+    "string": "#f1fa8c",
+    "transformations": "#8be9fd",
+    "unmatched-brace-background": "#ff5555",
+    "unmatched-brace-foreground": "#f8f8f2",
+    "variables": "#f8f8f2",
+    "whitespace-foreground": "#f8f8f2"
+  },
+  "index": 2000,
+  "name": "Dracula",
+  "paper": "#282a36",
+  "text": "#f8f8f2"
+}

@@ -1,0 +1,18 @@
+{
+  "colors": {
+    "axes-color": "#fdfdfd",
+    "background": "#0d0d0d",
+    "cgal-edge-2d": "#b6b6b6",
+    "cgal-edge-back": "#b6b6b6",
+    "cgal-edge-front": "#b6b6b6",
+    "cgal-face-2d": "#9b9b9b",
+    "cgal-face-back": "#a4a4a4",
+    "cgal-face-front": "#9b9b9b",
+    "crosshair": "#0d0d0d",
+    "opencsg-face-back": "#a4a4a4",
+    "opencsg-face-front": "#9b9b9b"
+  },
+  "index": 2000,
+  "name": "vantablack",
+  "show-in-gui": true
+}
