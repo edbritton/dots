@@ -2,3 +2,4 @@
 alias today='fd --changed-after 1day'
 alias lzd='lazydocker'
 alias lzg='lazygit'
+alias v='nvim'
