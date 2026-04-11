@@ -1,23 +1,35 @@
+# Basics
+brew "mas"
+brew "stow"
+
+# Terminal and shell upgrades
 brew "bat"
 brew "eza"
 brew "fd"
 brew "fzf"
-brew "gh"
-brew "lazygit"
-brew "neovim"
 brew "ripgrep"
-brew "starship"
-brew "stow"
+# brew "starship"
+cask "font-fira-code-nerd-font"
 
-# self-hosting or replacements to Apple services
+# Self-hosting and cross-platform
 cask "syncthing-app"
 cask "signal"
+mas "Infuse", id: 1136220934
 
-cask "font-fira-code-nerd-font"
+# Apps
+# brew "opencode"
+cask "obsidian"
+
+# VMs and containers
+tap "apple/apple"
+brew "container"
 cask "virtualbuddy"
 
-# laptops
+# Sysadmin
 cask "tailscale-app" if system("pmset -g batt 2>/dev/null | grep -q 'Battery'")
+mas "Apple Configurator", id: 1037126344
+mas "Remote Desktop", id: 409907375
 
-brew "container"
-brew "lazycontainer"
+# Safari extensions
+mas "Baking Soda", id: 1601151613
+mas "Vinegar", id: 1591303229
