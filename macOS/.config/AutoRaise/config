@@ -1,0 +1,7 @@
+delay=1
+focusDelay=1
+warpX=0.5
+warpY=0.5
+scale=1.0
+requireMouseStop=false
+stayFocusedBundleIds="com.apple.SecurityAgent"
