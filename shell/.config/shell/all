@@ -1,3 +1,4 @@
-source ~/.config/shell/aliases
-source ~/.config/shell/path
-source ~/.config/shell/tries
+. ~/.config/shell/aliases
+. ~/.config/shell/path
+. ~/.config/shell/tries
+. ~/.config/shell/banner
