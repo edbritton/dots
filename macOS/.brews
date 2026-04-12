@@ -19,17 +19,21 @@ mas "Infuse", id: 1136220934
 # Apps
 # brew "opencode"
 cask "obsidian"
+cask "middleclick"
 
 # VMs and containers
 tap "apple/apple"
 brew "container"
 cask "virtualbuddy"
 
-# Sysadmin
-cask "tailscale-app" if system("pmset -g batt 2>/dev/null | grep -q 'Battery'")
-mas "Apple Configurator", id: 1037126344
-mas "Remote Desktop", id: 409907375
-
 # Safari extensions
 mas "Baking Soda", id: 1601151613
 mas "Vinegar", id: 1591303229
+
+# Windows Manager stuff
+brew "dimentium/autoraise/autoraise"
+
+# Sysadmin
+mas "Apple Configurator", id: 1037126344
+mas "Remote Desktop", id: 409907375
+cask "tailscale-app" if system("pmset -g batt 2>/dev/null | grep -q 'Battery'")
