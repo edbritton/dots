@@ -1,4 +1,6 @@
 eval "$(starship init zsh)"
+autoload -Uz compinit
+compinit
 
 alias ..='cd ..'
 alias ...='cd ../..'
