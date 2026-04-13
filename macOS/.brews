@@ -20,6 +20,9 @@ mas "Infuse", id: 1136220934
 # brew "opencode"
 cask "obsidian"
 cask "middleclick"
+#mas "Hush", id: 1544743900
+#mas "JoyKeyMapper", id: 1511416593
+#mas "Reeder", id: 6475002485
 
 # VMs and containers
 tap "apple/apple"
@@ -28,6 +31,9 @@ cask "virtualbuddy"
 
 # Safari extensions
 mas "Baking Soda", id: 1601151613
+#mas "Rerouter", id: 1589151155
+#mas "TrashMe", id: 443126292
+#mas "Userscripts", id: 1463298887
 mas "Vinegar", id: 1591303229
 
 # Windows Manager stuff
