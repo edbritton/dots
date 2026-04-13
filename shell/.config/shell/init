@@ -1,0 +1,12 @@
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+fi
+
+# Load fzf bindings and autocompletes if installed
+command -v fzf &>/dev/null && . <(fzf --"${${ZSH_VERSION:+zsh}:-bash}") # use fzf for history search
+
+# Initiate starship if installed
+command -v starship &>/dev/null && eval "$(starship init "${${ZSH_VERSION:+zsh}:-bash}")"
+
+autoload -Uz compinit
+compinit

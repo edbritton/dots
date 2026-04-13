@@ -1,5 +1,46 @@
-#alias today='find ./ -mtime 0'
-alias today='fd --changed-after 1day'
+alias ..='cd ..' # zsh: setopt autocd replaces this
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+command -v opencode &>/dev/null && alias c='opencode'
+alias decompress='tar -xzf'
+
+if command -v fzf &>/dev/null; then
+  alias eff='$EDITOR "$(ff)"'
+  alias ff='fzf --preview '\''bat --style=numbers --color=always {}'\'''
+fi
+
+if [ "$(uname)" == "Darwin" ]; then
+  alias docker='container'
+  alias lzc='lazycontainer'
+  alias lazydocker='lzc'
+fi
+
+alias d='docker'
 alias lzd='lazydocker'
+
 alias lzg='lazygit'
-alias v='nvim'
+alias g='git'
+alias gcad='git commit -a --amend'
+alias gcam='git commit -a -m'
+alias gcm='git commit -m'
+
+if command -v eza &>/dev/null; then
+  alias ls='eza -lh --group-directories-first --icons=auto'
+  alias lt='eza --tree --level=2 --long --icons --git'
+  alias lta='lt -A'
+fi
+
+alias lsa='ls -A'
+
+if command -v fd &>/dev/null; then
+  alias today='find ./ -mtime 0'
+else
+  alias today='fd --changed-after 1day'
+fi
+
+if command -v nvim &>/dev/null; then
+  alias v='nvim'
+else
+  alias v='vim'
+fi
