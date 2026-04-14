@@ -4,8 +4,8 @@
   "position": "top",
   "spacing": 5,
   "height": 26,
-  "modules-left": ["custom/omarchy", "custom/update", "custom/voxtype", "custom/screenrecording-indicator", "custom/idle-indicator", "custom/notification-silencing-indicator"],
-  "modules-center": ["hyprland/workspaces"],
+  "modules-left": ["custom/omarchy", "custom/update", "custom/voxtype", "custom/screenrecording-indicator", "custom/idle-indicator", "custom/notification-silencing-indicator","hyprland/workspaces"],
+  "modules-center": [],
   "modules-right": [
     "group/tray-expander",
     "bluetooth",
@@ -23,16 +23,16 @@
     "on-click": "activate",
     "format": "{icon} {name}", 
     "format-icons": {
-      "default": "",
-      "active": "",
-      "!default": "\uebb5",
-      "!active": "\uebb4",
+      "default": " ",
+      "active": "\uebb4",
+      "!default": "\uebb5",
+      "!active": "\uebb4",
     },
     "persistent-workspaces": {
     }
   },
   "custom/omarchy": {
-    "format": "\uf44e<!--span font='omarchy'>\ue900</span-->",
+    "format": "󰣇<!--span font='omarchy'>\uf44e\ue900</span-->",
     "on-click": "omarchy-menu",
     "on-click-right": "xdg-terminal-exec",
     "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
@@ -170,7 +170,7 @@
       "transition-duration": 600,
       "children-class": "tray-group-item"
     },
-    "modules": ["custom/expand-icon", "tray"]
+    "modules": ["custom/expand-icon", "custom/syncthing", "tray"]
   },
   "custom/expand-icon": {
     "format": "",
@@ -179,6 +179,12 @@
     "on-scroll-down": "",
     "on-scroll-left": "",
     "on-scroll-right": ""
+  },
+  "custom/syncthing": {
+    "exec": "~/.dotfiles/waybar/.config/waybar/bin/waybar-syncthing status",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "~/.dotfiles/waybar/.config/waybar/bin/waybar-syncthing toggle"
   },
   "custom/screenrecording-indicator": {
     "on-click": "omarchy-cmd-screenrecord",

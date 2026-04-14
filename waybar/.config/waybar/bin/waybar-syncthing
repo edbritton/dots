@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Check if syncthing is running
+is_running() {
+    systemctl --user is-active syncthing >/dev/null 2>&1
+}
+
+myID() {
+  syncthing cli show system | rg myID | sed 's/.*: "\([A-Z0-9]*\).*/\1/'
+}
+
+# Output status for waybar
+status() {
+    if is_running; then
+        echo '{"text": "  ", "tooltip": "'$(myID)'"}'
+    else
+        echo '{"text": "  ", "tooltip": "Syncthing paused (click to start)"}'
+    fi
+}
+
+# Toggle start/stop
+toggle() {
+    if is_running; then
+        #systemctl --user stop syncthing
+        omarchy-launch-webapp http://localhost:8384
+        #notify-send "Syncthing" "Stopped" -i syncthing
+    else
+        systemctl --user start syncthing
+        notify-send "Syncthing" "Started" -i syncthing
+    fi
+}
+
+case "$1" in
+    toggle)
+        toggle
+        ;;
+    status|"")
+        status
+        ;;
+    *)
+        echo "Usage: $0 {toggle|status}"
+        exit 1
+        ;;
+esac
