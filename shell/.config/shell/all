@@ -2,3 +2,4 @@
 . ~/.config/shell/init
 . ~/.config/shell/path
 . ~/.config/shell/tries
+. ~/.config/shell/functions
