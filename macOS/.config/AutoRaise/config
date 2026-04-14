@@ -1,5 +1,6 @@
+pollMillis=80
 delay=1
-focusDelay=1
+focusDelay=0
 warpX=0.5
 warpY=0.5
 scale=1.0
