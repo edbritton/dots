@@ -1,12 +1,17 @@
+_shell="${ZSH_VERSION:+zsh}"
+_shell="${_shell:-bash}"
+
 if [ -x /opt/homebrew/bin/brew ]; then
-  eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+  eval "$(/opt/homebrew/bin/brew shellenv $_shell)"
+
+  autoload -Uz compinit
+  compinit
 fi
 
 # Load fzf bindings and autocompletes if installed
-command -v fzf &>/dev/null && . <(fzf --"${${ZSH_VERSION:+zsh}:-bash}") # use fzf for history search
+command -v fzf &>/dev/null && . <(fzf --"$_shell") # use fzf for history search
 
 # Initiate starship if installed
-command -v starship &>/dev/null && eval "$(starship init "${${ZSH_VERSION:+zsh}:-bash}")"
+command -v starship &>/dev/null && eval "$(starship init "$_shell")"
 
-autoload -Uz compinit
-compinit
+unset _shell

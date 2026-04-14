@@ -2,7 +2,7 @@ alias ..='cd ..' # zsh: setopt autocd replaces this
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-command -v opencode &>/dev/null && alias c='opencode'
+c='opencode'
 alias decompress='tar -xzf'
 
 if command -v fzf &>/dev/null; then
@@ -10,7 +10,7 @@ if command -v fzf &>/dev/null; then
   alias ff='fzf --preview '\''bat --style=numbers --color=always {}'\'''
 fi
 
-if [ "$(uname)" == "Darwin" ]; then
+if [[ "$(uname)" == "Darwin" ]]; then
   alias docker='container'
   alias lzc='lazycontainer'
   alias lazydocker='lzc'
@@ -33,11 +33,7 @@ fi
 
 alias lsa='ls -A'
 
-if command -v fd &>/dev/null; then
-  alias today='find ./ -mtime 0'
-else
-  alias today='fd --changed-after 1day'
-fi
+command -v fd &>/dev/null && alias today='fd --changed-after 1day'
 
 if command -v nvim &>/dev/null; then
   alias v='nvim'
