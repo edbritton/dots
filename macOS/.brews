@@ -8,7 +8,7 @@ brew "eza"
 brew "fd"
 brew "fzf"
 brew "ripgrep"
-# brew "starship"
+brew "starship"
 cask "font-fira-code-nerd-font"
 
 # Self-hosting and cross-platform
@@ -17,27 +17,28 @@ cask "signal"
 mas "Infuse", id: 1136220934
 
 # Apps
-# brew "opencode"
-cask "obsidian"
-cask "middleclick"
-#mas "Hush", id: 1544743900
-#mas "JoyKeyMapper", id: 1511416593
-#mas "Reeder", id: 6475002485
-
 # VMs and containers
-tap "apple/apple"
 brew "container"
 cask "virtualbuddy"
 
-# Safari extensions
-mas "Baking Soda", id: 1601151613
-#mas "Rerouter", id: 1589151155
-#mas "TrashMe", id: 443126292
-#mas "Userscripts", id: 1463298887
-mas "Vinegar", id: 1591303229
-
 # Windows Manager stuff
 brew "dimentium/autoraise/autoraise"
+cask "middleclick"
+
+# brew "opencode"
+cask "obsidian"
+#mas "Reeder", id: 6475002485
+
+# Utilities
+#mas "JoyKeyMapper", id: 1511416593
+#mas "TrashMe", id: 443126292
+
+# Safari extensions
+mas "Baking Soda", id: 1601151613
+mas "Hush", id: 1544743900
+#mas "Rerouter", id: 1589151155
+#mas "Userscripts", id: 1463298887
+mas "Vinegar", id: 1591303229
 
 # Sysadmin
 mas "Apple Configurator", id: 1037126344
