@@ -16,7 +16,6 @@ cask "syncthing-app"
 cask "signal"
 mas "Infuse", id: 1136220934
 
-# Apps
 # VMs and containers
 brew "container"
 cask "virtualbuddy"
@@ -25,8 +24,10 @@ cask "virtualbuddy"
 brew "dimentium/autoraise/autoraise"
 cask "middleclick"
 
+# Apps
 # brew "opencode"
 cask "obsidian"
+#cask "openscad@snapshot"
 #mas "Reeder", id: 6475002485
 
 # Utilities
