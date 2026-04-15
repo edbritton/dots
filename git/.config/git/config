@@ -6,7 +6,7 @@
   #unstage = reset HEAD
   lol = log !git daemon --pretty=oneline --abbrev-commit --graph --decorate
   #branches = !git-branches
-  st = status -s
+  st = status -bs
 [column]
   ui = auto
 [branch]
