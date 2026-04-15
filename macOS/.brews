@@ -40,6 +40,7 @@ mas "Hush", id: 1544743900
 #mas "Rerouter", id: 1589151155
 #mas "Userscripts", id: 1463298887 # replaced by TestFlight app
 mas "Vinegar", id: 1591303229
+mas "uBlock Origin Lite", id: 6745342698
 
 # Sysadmin
 mas "Apple Configurator", id: 1037126344
