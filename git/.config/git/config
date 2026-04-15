@@ -4,7 +4,7 @@
 [alias]
   #serve = !git daemon --reuseaddr --verbose --base-path=. --export-all ./.git
   #unstage = reset HEAD
-  lol = log !git daemon --pretty=oneline --abbrev-commit --graph --decorate
+  lol = log --pretty=oneline --abbrev-commit --graph --decorate
   #branches = !git-branches
   st = status -bs
 [column]
