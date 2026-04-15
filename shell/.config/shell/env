@@ -1,0 +1,15 @@
+if command -v nvim &>/dev/null; then
+  export EDITOR="nvim"
+else
+  export EDITOR="vim"
+fi
+
+export GIT_EDITOR="$EDITOR"
+
+if [ -d "$HOME/Applications" ] ; then
+  export PATH="$HOME/Applications:$PATH"
+fi
+
+if [ -d "$HOME/bin" ] ; then
+  export PATH="$HOME/bin:$PATH"
+fi

@@ -1,5 +1,5 @@
 . ~/.config/shell/aliases
 . ~/.config/shell/init
-. ~/.config/shell/path
+. ~/.config/shell/env
 . ~/.config/shell/tries
 . ~/.config/shell/functions
