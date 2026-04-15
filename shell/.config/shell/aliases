@@ -2,8 +2,8 @@ alias ..='cd ..' # zsh: setopt autocd replaces this
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-c='opencode'
 alias decompress='tar -xzf'
+compress() { tar -czf "${1%/}.tar.gz" "${1%/}"; }
 
 if command -v fzf &>/dev/null; then
   alias eff='$EDITOR "$(ff)"'
