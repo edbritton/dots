@@ -38,10 +38,11 @@ cask "obsidian"
 mas "Baking Soda", id: 1601151613
 mas "Hush", id: 1544743900
 #mas "Rerouter", id: 1589151155
-#mas "Userscripts", id: 1463298887
+#mas "Userscripts", id: 1463298887 # replaced by TestFlight app
 mas "Vinegar", id: 1591303229
 
 # Sysadmin
 mas "Apple Configurator", id: 1037126344
 mas "Remote Desktop", id: 409907375
+mas "TestFlight", id: 899247664
 cask "tailscale-app" if system("pmset -g batt 2>/dev/null | grep -q 'Battery'")
