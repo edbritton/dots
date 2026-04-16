@@ -17,15 +17,12 @@ The idea of these config files is to be placed on top of the opinionated ones wh
 So some of them will be broken without the original source files provided there.
 
 ```bash
-cd ~
-git clone https://github.com/edbritton/dotfiles
-mv dotfiles .dotfiles
-cd .dotfiles
+git clone https://github.com/edbritton/dots $HOME/.dots
 sudo pacman -S stow
-stow
+stow -d ~/.dots
 ```
 
-If you don't only want a few configs just select them by name:
+If you only want a few configs just select them by name:
 ```bash
 stow walker shell
 ```
@@ -36,13 +33,9 @@ stow walker shell
 On the Mac there is less need for Walker, Elephant, Hyprland, and so on. Therefore the only things needed are perhaps the convienence of consistant shell binaries and personal scripts.
 
 ```bash
-cd ~
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-git clone https://github.com/edbritton/dotfiles
-mv dotfiles .dotfiles
-cd .dotfiles
+git clone https://github.com/edbritton/dots ~/.dots
 brew install stow
-stow brew shell
-cd ~
-brew bundle
+stow macOS shell git -d ~/.dots
+brew bundle --file=~/.brews
 ```
