@@ -22,7 +22,7 @@ alias lzd='lazydocker'
 alias lzg='lazygit'
 alias g='git'
 alias gcad='git commit -a --amend'
-alias gcam='git commit -a -m'
+alias gcam='git commit -am'
 alias gcm='git commit -m'
 
 if command -v eza &>/dev/null; then
