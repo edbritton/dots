@@ -1,20 +1,13 @@
-Ed's dotfiles
-=============
-
-Previous dotfiles on my Mac were too messy to share online. With a fresh install of basecamp/omarchy from @DHH, I've taken the time to create something neat and tidy.
-
-Currently, these dotfiles are for use on either an Omarchy install or macOS. Neither of which uses all of them.
+Can be used on a macOS install, or *on top* of an Omarchy install.
 
 
-Installing
-----------
+Omarchy
+-------
+
+Some of these configs will be broken without the Omarchy source files.
 
 
-### Omarchy
-
-The idea of these config files is to be placed on top of the opinionated ones which come bundled in the Omarchy install.
-
-So some of them will be broken without the original source files provided there.
+### Install
 
 ```bash
 git clone https://github.com/edbritton/dots $HOME/.dots
@@ -28,9 +21,26 @@ stow walker shell
 ```
 
 
-### macOS
+macOS
+-----
 
-On the Mac there is less need for Walker, Elephant, Hyprland, and so on. Therefore the only things needed are perhaps the convienence of consistant shell binaries and personal scripts.
+Essentials: `stow macOS shell git`.
+
+`stow macOS` includes:
+- Zsh shell (references things in the shell dots)
+- Alacritty (for pre-Tahoe Terminal)
+- AutoRaise
+- Brewfile
+
+`stow shell` includes:
+- Starship
+- Shell functions
+- Aliases
+- Zsh options
+- Paths and evals (used by macOS/Zsh dots)
+
+
+### Quick install
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
