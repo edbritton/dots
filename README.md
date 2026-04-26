@@ -40,7 +40,12 @@ Essentials: `stow macOS shell git`.
 - Paths and evals (used by macOS/Zsh dots)
 
 
-### Quick install
+### Install
+
+Shared dots serve two purposes, somewhere for the sharer to reinstall configs easily, and for others to find out about references they didn't know exist. If you want to copy my personal macOS references, then I'm sharing a shell script which will aggressively install and setup everything -- like I do when initialising a fresh machine.
+
+
+After install, creating a file `/etc/pam.d/sudo_local` requires manual creation, because Apple doesn't trust us not to break things. Copying `/etc/pam.d/sudo_local.template` and removing the comment from its final line to enable Terminal TouchID.
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
