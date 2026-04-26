@@ -5,4 +5,6 @@ warpX=0.5
 warpY=0.5
 scale=1.0
 requireMouseStop=false
-stayFocusedBundleIds="com.apple.SecurityAgent"
+ignoreTitles="^$|Quick Look"
+ignoreApps="com.apple.quicklook"
+stayFocusedBundleIds="com.apple.SecurityAgent,com.apple.quicklook"
