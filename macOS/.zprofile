@@ -3,25 +3,10 @@
 . ~/.config/shell/containers
 . ~/.config/shell/zoptions
 
-mm="\
-                           ▄      ▄
-█▀▀▄▀▀▄  ▀▀█ █▀▀▀  █▀▀▄▀▀▄ ▄ █▀▀▄ ▄
-█  █  █ █▀▀█ █     █  █  █ █ █  █ █
-▀  ▀  ▀ ▀▀▀▀ ▀▀▀▀  ▀  ▀  ▀ ▀ ▀  ▀ ▀
-"
+_machine=$(system_profiler SPHardwareDataType 2>/dev/null | grep Name | sed 's/.*Model Name: //g')
+_osName=$(grep -oE 'SOFTWARE LICENSE AGREEMENT FOR macOS [^\]*' '/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/en.lproj/OSXSoftwareLicense.rtf' | sed 's/.*macOS //;s/ .*//')
 
-mbn="\
-                  ▄              ▄                   
-█▀▀▄▀▀▄  ▀▀█ █▀▀▀ █▀▀█ █▀▀█ █▀▀█ █  █  █▀▀▄ █▀▀█ █▀▀█
-█  █  █ █▀▀█ █    █  █ █  █ █  █ █▀▀▄  █  █ █▀▀▀ █  █
-▀  ▀  ▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀  ▀  ▀  ▀ ▀▀▀▀ ▀▀▀▀
-"
+clear && sh ~/.config/shell/banner.sh "$_machine" && echo -e "\
+$(sw_vers -productName) $_osName $(sw_vers -productVersion) ($(uname -sr)) "
 
-machine=$(system_profiler SPHardwareDataType 2>/dev/null | grep Name | sed 's/.*Model Name: //g')
-osName=$(grep -oE 'SOFTWARE LICENSE AGREEMENT FOR macOS [^\]*' '/System/Library/CoreServices/Setup Assistant.app/Contents/Resources/en.lproj/OSXSoftwareLicense.rtf' | sed 's/.*macOS //;s/ .*//')
-
-clear && echo -e "\
-$([ "$machine" = "Mac mini" ] && echo "$mm")\
-$([ "$machine" = "MacBook Neo" ] && echo "$mbn")\
-
-$(sw_vers -productName) $osName $(sw_vers -productVersion) ($(uname -sr)) "
+unset _machine _osName
