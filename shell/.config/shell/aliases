@@ -10,6 +10,10 @@ if command -v fzf &>/dev/null; then
   alias ff='fzf --preview '\''bat --style=numbers --color=always {}'\'''
 fi
 
+if command -v opencode &>/dev/null; then
+  alias c='opencode'
+fi
+
 if [[ "$(uname)" == "Darwin" ]]; then
   alias docker='container'
   alias lzc='lazycontainer'

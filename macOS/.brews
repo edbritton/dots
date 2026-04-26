@@ -12,9 +12,11 @@ brew "starship"
 cask "font-fira-code-nerd-font"
 
 # Self-hosting and cross-platform
+#brew handbrake                    # for ARM
+#cask "iina"                       # (this && Jellyfin) || Infuse
 cask "syncthing-app"
 cask "signal"
-mas "Infuse", id: 1136220934
+#mas "Infuse", id: 1136220934      # this || (iina && Jellyfin)
 
 # VMs and containers
 brew "container"
@@ -25,9 +27,9 @@ brew "dimentium/autoraise/autoraise"
 cask "middleclick"
 
 # Apps
-# brew "opencode"
-cask "obsidian"
-#cask "openscad@snapshot"
+#brew "opencode"                  # Designing
+cask "obsidian"                    # Writing
+#cask "openscad@snapshot"          # Designing
 #mas "Reeder", id: 6475002485
 
 # Utilities

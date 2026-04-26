@@ -10,6 +10,10 @@ if [ -d "$HOME/Applications" ] ; then
   export PATH="$HOME/Applications:$PATH"
 fi
 
+if [ -d "$HOME/Applications/Scripts" ] ; then
+  export PATH="$HOME/Applications/Scripts:$PATH"
+fi
+
 if [ -d "$HOME/bin" ] ; then
   export PATH="$HOME/bin:$PATH"
 fi

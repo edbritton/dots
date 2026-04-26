@@ -1,5 +1,6 @@
 . /etc/zprofile
 . ~/.config/shell/all
+. ~/.config/shell/containers
 . ~/.config/shell/zoptions
 
 mm="\
