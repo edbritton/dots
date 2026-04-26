@@ -1,0 +1,23 @@
+# Apple Containers -- but might figure out a Docker option
+
+transmission() {
+  container run --rm --detach \
+    --name transmission \
+    -e PUID=1000 \
+    -e PGID=1000 \
+    -e TZ=Etc/UTC \
+    -e TRANSMISSION_WEB_HOME= \
+    -e USER= \
+    -e PASS= \
+    -e WHITELIST= \
+    -e PEERPORT= \
+    -e HOST_WHITELIST= \
+    -p 9091:9091/tcp \
+    -p 51413:51413/tcp \
+    -p 51413:51413/udp \
+    -v ~/Downloads/torrents:/downloads \
+    -v ~/.config/transmission/:/config \
+    -v ~/Downloads/torrents/watch/:/watch \
+    -u 1000:1000 \
+    lscr.io/linuxserver/transmission:latest'
+}
