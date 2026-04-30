@@ -54,3 +54,22 @@ brew install stow
 stow macOS shell git -d ~/.dots
 brew bundle --file=~/.brews
 ```
+
+
+Omakos
+------
+
+Personal macOS setup. Includes these dots, sets system preferences, and installs some packages.
+
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/edbritton/dots/HEAD/omakos.sh)"`
+
+
+### Tiling windows solution
+
+I really enjoy the tiling windows or Hyprland, but getting macOS to behave nicely was getting too difficult. Instead, I have learned the keybindings for window manipulation:
+
+- <kbd>fn + control + left/right</kbd> move current window
+- <kbd>shift + fn + control + left/right</kbd> arrange two windows
+- <kbd>shift + fn + control + option + left/right</kbd> arrange three windows
+- <kbd>fn + control + f</kbd> fill screen (not fullscreen)
+- <kdb>fn + control + c</kdb> centre window
