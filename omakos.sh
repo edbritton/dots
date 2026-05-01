@@ -90,7 +90,7 @@ defaults write "com.apple.WindowManager" "EnableTiledWindowMargins" -bool true
 defaults write "com.apple.WindowManager" "StandardHideWidgets" -bool true
 defaults write "com.apple.WindowManager" "EnableStandardClickToShowDesktop" -bool false
 
-# Leave desktop spaces where the are thanks
+# Leave desktop spaces where they are thanks
 defaults write "com.apple.dock" "mru-spaces" -bool false
 
 # Don't atomatically switch to a space when openning app

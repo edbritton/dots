@@ -28,7 +28,7 @@ Personal macOS setup. Includes these dots, sets system preferences, and installs
 
 ### Tiling windows solution
 
-I really enjoy the tiling windows or Hyprland, but getting macOS to behave nicely was getting too difficult. Instead, I have learned the keybindings for window manipulation:
+I really enjoy the tiling windows of Hyprland, but getting macOS to behave nicely was getting too difficult. Instead, I have learned the keybindings for window manipulation:
 
 - <kbd>fn + control + left/right</kbd> move current window
 - <kbd>shift + fn + control + left/right</kbd> arrange two windows
