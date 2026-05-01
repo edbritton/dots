@@ -23,6 +23,7 @@ brew "container"
 cask "virtualbuddy"
 
 # Windows Manager stuff
+#cask amethyst # automatic window tiling, can also replace AutoRaise
 brew "dimentium/autoraise/autoraise"
 cask "middleclick"
 

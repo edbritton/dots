@@ -47,6 +47,14 @@ while true; do
       rm -rf ~/.config/nvim/.git
       stow nvim -d $HOME/.dots -t $HOME
     fi
+
+    if [ -f ~/Library/Preferences/com.amethyst.Amethyst.plist ]; then
+      defaults write "com.amethyst.Amethyst" "hide-menu-bar-icon" -bool true
+      defaults write "com.amethyst.Amethyst" "mouse-follows-focus" -bool true
+      defaults write "com.amethyst.Amethyst" "window-margin" -bool true
+      defaults write "com.amethyst.Amethyst" "window-margin-size" -int 8
+    fi
+
     break
     ;;
   [Nn]*) ;;
