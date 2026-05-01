@@ -33,6 +33,7 @@ cask "obsidian"                    # Writing
 #mas "Reeder", id: 6475002485
 
 # Utilities
+#brew pairpods
 #mas "JoyKeyMapper", id: 1511416593
 #mas "TrashMe", id: 443126292
 
