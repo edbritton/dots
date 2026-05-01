@@ -1,3 +1,16 @@
+# Use HandBrake to convert MKV to MP4
+# First draft for macOS based media soltuions, might use GUI instead
+mkv2mp4() {
+  for file in *.mkv; do
+    HandBrakeCLI -i "$file" -o "${file%.mkv}.mp4" \
+      -e x265_10bit \
+      -q 18 \
+      -E copy \
+      --hdr-dynamic-metadata all \
+      --keep-metadata
+  done
+}
+
 # Write iso file to sd card
 iso2sd() {
   if (( $# < 1 )); then
