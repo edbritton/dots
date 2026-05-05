@@ -10,9 +10,9 @@ set -eu
 if [ ! -f /etc/pam.d/sudo_local ]; then
   echo "Enable TouchID for sudo authentication"
   echo
-  echo "sudo cp /etc/pam.d/sudo_local.template /etc/pam.d/sudo_local"
+  echo "sudo cp /etc/pam.d/sudo_local{.template,}"
   echo "sudo echo 'auth       sufficient     pam_tid.so' >> /etc/pam.d/sudo_local"
-  sudo cp /etc/pam.d/sudo_local.template /etc/pam.d/sudo_local
+  sudo cp /etc/pam.d/sudo_local{.template,}
   sudo echo 'auth       sufficient     pam_tid.so' >>/etc/pam.d/sudo_local
   exit 1
 fi
