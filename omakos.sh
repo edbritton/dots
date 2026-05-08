@@ -4,6 +4,10 @@ set -eu
 
 [ "$(uname)" != "Darwin" ] && echo "macOS required" && exit 1
 
+# NOTES
+# https://gist.github.com/ChristopherA/98628f8cd00c94f11ee6035d53b0d3c6
+# defaults read com.apple.symbolichotkeys
+
 # Enable TouchID for sudo auth -- required
 # This is hard because of macOS privileges being crazy
 # Probably need to do this manually
