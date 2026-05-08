@@ -64,3 +64,9 @@ brew install stow
 stow macOS shell git -d ~/.dots
 brew bundle --file=~/.brews
 ```
+
+
+Other possible tweaks
+---------------------
+
+- <https://github.com/m4rkw/macos-corner-fix>
