@@ -12,29 +12,30 @@ brew "starship"
 cask "font-fira-code-nerd-font"
 
 # Self-hosting and cross-platform
-#brew handbrake                    # for ARM
-#cask "iina"                       # (this && Jellyfin) || Infuse
+#brew "handbrake"                     # for ARM
+#cask "iina"                          # (this && Jellyfin) || Infuse
 cask "syncthing-app"
 cask "signal"
-#mas "Infuse", id: 1136220934      # this || (iina && Jellyfin)
+#mas "Infuse", id: 1136220934         # this || (iina && Jellyfin)
 
 # VMs and containers
 brew "container"
 cask "virtualbuddy"
 
 # Windows Manager stuff
-#cask amethyst # automatic window tiling, can also replace AutoRaise
-brew "dimentium/autoraise/autoraise"
+#brew "asmvik/formulae/skhd"          # use with yabai, might replace keybind Shortcuts
+#brew "asmvik/formulae/yabai"         # instead of amethyst, requires sudo manipulation for all features
+brew "dimentium/autoraise/autoraise"  # can be replaced if usimg yabai or amethyst
 cask "middleclick"
 
 # Apps
-#brew "opencode"                  # Designing
-cask "obsidian"                    # Writing
-#cask "openscad@snapshot"          # Designing
+#brew "opencode"                      # Designing
+cask "obsidian"                       # Writing
+#cask "openscad@snapshot"             # Designing
 #mas "Reeder", id: 6475002485
 
 # Utilities
-#brew pairpods
+#brew "pairpods"
 #mas "JoyKeyMapper", id: 1511416593
 #mas "TrashMe", id: 443126292
 
@@ -42,7 +43,7 @@ cask "obsidian"                    # Writing
 mas "Baking Soda", id: 1601151613
 mas "Hush", id: 1544743900
 #mas "Rerouter", id: 1589151155
-#mas "Userscripts", id: 1463298887 # replaced by TestFlight app
+#mas "Userscripts", id: 1463298887    # replaced by TestFlight app
 mas "Vinegar", id: 1591303229
 mas "uBlock Origin Lite", id: 6745342698
 
