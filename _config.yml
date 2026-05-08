@@ -1,0 +1,23 @@
+title: Ed’s Dots
+baseurl: "/dots"
+url: "https://edbritton.github.io"
+repository: edbritton/dots
+remote_theme: edbritton/edbritton.github.io
+color_scheme: gmi
+aux_links:
+  "GitHub":
+    - "https://github.com/edbritton/dots"
+  "My Projects":
+    - "/repos"
+  "My Website":
+    - "/"
+search_enabled: false
+markdown: GFM
+plugins:
+  - jekyll-default-layout
+  - jekyll-feed
+  - jekyll-github-metadata
+  - jekyll-mentions
+  - jekyll-octicons
+  - jekyll-redirect-from
+  - jekyll-seo-tag
