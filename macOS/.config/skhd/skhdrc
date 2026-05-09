@@ -2,6 +2,12 @@
 # also see <https://github.com/asmvik/dotfiles>
 
 # App keybindings (can be done with Shortcuts instead)
+# Found the Shortcuts to be more reliable, when they actually run, these make sure the keybindings work more often
+shift + lcmd - return  : shortcuts run 'Open browser'
+shift + lcmd - f       : shortcuts run 'Open Finder'
+shift + lcmd - g       : shortcuts run 'Open messages'
+shift + lcmd - o       : shortcuts run 'Open Obsidian'
+shift + lcmd - y       : shortcuts run 'Open YouTube'
 #lcmd - return         : osascript -e 'tell app "Terminal" to do script "" activate'
 #shift + lcmd - return : osascript -e 'tell application "Safari" to make new document'
 #shift + lcmd - y      : osascript -e 'tell application "YouTube" to make activate'
