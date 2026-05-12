@@ -105,7 +105,7 @@ defaults write "com.apple.WindowManager" "EnableStandardClickToShowDesktop" -boo
 # Leave desktop spaces where they are thanks
 defaults write "com.apple.dock" "mru-spaces" -bool false
 
-# Don't atomatically switch to a space when openning app
+# Don't atomatically switch to a space when opening app
 defaults write -g "AppleSpacesSwitchOnActivate" -bool false
 
 # Stop sharing analytics for Spotlight
