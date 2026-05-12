@@ -1,5 +1,7 @@
 # Fork of <https://github.com/FelixKratz/dotfiles/blob/master/.config/skhd/skhdrc>
 # also see <https://github.com/asmvik/dotfiles>
+# some idead <https://notes.alinpanaitiu.com/Keyboard-tricks-from-a-macOS-app-dev#fn-key>
+# fn keys to avoid: A, C, D, N
 
 # App keybindings (can be done with Shortcuts instead)
 # Found the Shortcuts to be more reliable, when they actually run, these make sure the keybindings work more often
@@ -11,6 +13,9 @@ shift + lcmd - y       : shortcuts run 'Open YouTube'
 #lcmd - return         : osascript -e 'tell app "Terminal" to do script "" activate'
 #shift + lcmd - return : osascript -e 'tell application "Safari" to make new document'
 #shift + lcmd - y      : osascript -e 'tell application "YouTube" to make activate'
+
+# Quicker lockscreen binding
+fn - l : skhd -k 'ctrl + cmd - q'
 
 ## Navigation (lalt - ...)
 # Space Navigation (four spaces per display): lalt - {1, 2, 3, 4}
