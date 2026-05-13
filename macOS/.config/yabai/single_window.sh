@@ -12,8 +12,9 @@ if [ "$WINDOW_COUNT" -eq 1 ]; then
     yabai -m window $ID --focus
     shortcuts run 'Centre Square'
   fi
-elif [ "$WINDOW_COUNT" -gt 1 ]; then
+elif [ "$WINDOW_COUNT" -eq 2 ]; then
   echo "$WINDOWS_IN_SPACE" | jq -r --arg excl "$EXCLUDED_APPS" '.[] | select(."is-visible"==true and ."is-floating"==true and ."can-resize"==true and (.app | test($excl) | not) ) .id' | while read -r ID; do
-    yabai -m window $ID --toggle float
+    yabai -m window $ID --toggle float &&
+      yabai -m window $ID --swap west
   done
 fi
