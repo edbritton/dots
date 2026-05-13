@@ -16,6 +16,7 @@ shift + lcmd - y       : shortcuts run 'Open YouTube'
 
 # Quicker lockscreen binding
 fn - l : skhd -k 'ctrl + cmd - q'
+fn - y : if pgrep -x yabai > /dev/null; then yabai --stop-service && brew services start autoraise; else yabai --start-service && brew services stop autoraise; fi
 
 ## Navigation (lalt - ...)
 # Space Navigation (four spaces per display): lalt - {1, 2, 3, 4}
