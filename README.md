@@ -26,9 +26,15 @@ Personal macOS setup. Includes these dots, sets system preferences, and installs
 `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/edbritton/dots/HEAD/omakos.sh)"`
 
 
-### Tiling windows solution
+### Window management
 
-I really enjoy the tiling windows of Hyprland, but getting macOS to behave nicely was getting too difficult. Instead, I have learned the keybindings for window manipulation:
+Yabai will stop managing a window if it is the only one visible in the space.  
+
+- <kbd>fn + Y</kbd> toggle Yabai globally
+- <kbd>lalt + T</kbd> toggle tiling for current window
+
+
+**macOS built-in window management bindings**:
 
 - <kbd>fn + control + left/right</kbd> move current window
 - <kbd>shift + fn + control + left/right</kbd> arrange two windows
