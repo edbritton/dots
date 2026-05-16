@@ -2,7 +2,7 @@
 var app = Application.currentApplication();
 app.includeStandardAdditions = true;
 
-delay(0.2);
+delay(0.1);
 
 var windowPIDs = new Set(
   JSON.parse(app.doShellScript("yabai -m query --windows"))
