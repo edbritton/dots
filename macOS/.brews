@@ -23,9 +23,9 @@ brew "container"
 cask "virtualbuddy"
 
 # Windows Manager stuff
-#brew "asmvik/formulae/skhd"          # use with yabai, might replace keybind Shortcuts
-#brew "asmvik/formulae/yabai"         # instead of amethyst, requires sudo manipulation for all features
-brew "dimentium/autoraise/autoraise"  # can be replaced if usimg yabai or amethyst
+brew "asmvik/formulae/skhd"           # use with yabai, might replace keybind Shortcuts
+brew "asmvik/formulae/yabai"          # requires sudo manipulation for all features
+brew "dimentium/autoraise/autoraise"  # used as fallback when yabai is off
 cask "middleclick"
 
 # Apps
@@ -36,7 +36,7 @@ cask "obsidian"                       # Writing
 
 # Utilities
 #brew "pairpods"
-#mas "JoyKeyMapper", id: 1511416593
+#mas "JoyKeyMapper", id: 1511416593   # replaced with manaporkun/JoyMapKit
 #mas "TrashMe", id: 443126292
 
 # Safari extensions

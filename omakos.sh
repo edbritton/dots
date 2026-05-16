@@ -59,6 +59,8 @@ while true; do
       defaults write "com.amethyst.Amethyst" "window-margin-size" -int 8
     fi
 
+    #curl -sL https://github.com/manaporkun/JoyMapKit/releases/latest/download/JoyMapKit-0.2.0.dmg -o /tmp/JoyMapKit.dmg && hdiutil attach /tmp/JoyMapKit.dmg -quiet && cp -R "/Volumes/JoyMapKit/JoyMapKit.app" /Applications/ && hdiutil detach "/Volumes/JoyMapKit" -quiet && rm /tmp/JoyMapKit.dmg # && open /Applications/JoyMapKit.app
+
     break
     ;;
   [Nn]*) ;;
