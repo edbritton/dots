@@ -22,11 +22,11 @@ CURRENT_SPACE=$(yabai -m query --spaces --space | jq -r '.index')
 #   - have at least one window
 
 #target=$(yabai -m query --spaces | jq -r 'map(select(."is-visible" == false and (.windows | length > 0))) | sort_by(.index) | .[0].index')
-recent=$(yabai -m query --windows | jq -r --arg curr "$CURRENT_SPACE" 'map(select(."is-minimized" == false and .space != ($curr | tonumber) and (.title | length > 0))) | (.[0].space // 1)')
-first=$(yabai -m query --windows | jq -r --arg curr "$CURRENT_SPACE" 'map(select(."is-minimized" == false and (.title | length > 0))) | sort_by(.space) | .[].space')
-next=$(yabai -m query --windows | jq -r --arg curr "$CURRENT_SPACE" 'map(select(."is-minimized" == false and (.title | length > 0) and .space > ($curr | tonumber))) | sort_by(.space) | .[].space')
-prev=$(yabai -m query --windows | jq -r --arg curr "$CURRENT_SPACE" 'map(select(."is-minimized" == false and (.title | length > 0) and .space < ($curr | tonumber))) | sort_by(.space) | reverse | .[].space')
-last=$(yabai -m query --windows | jq -r --arg curr "$CURRENT_SPACE" 'map(select(."is-minimized" == false and (.title | length > 0))) | sort_by(.space) | reverse | .[].space')
+recent=$(yabai -m query --windows | jq -r --arg curr "$CURRENT_SPACE" 'map(select(."is-minimized" == false and .space != ($curr | tonumber) and ( .frame.x == 0 or (.title | length > 0) ))) | (.[0].space // 1)')
+first=$(yabai -m query --windows | jq -r --arg curr "$CURRENT_SPACE" 'map(select(."is-minimized" == false and ( .frame.x == 0 or (.title | length > 0) ))) | sort_by(.space) | .[].space')
+next=$(yabai -m query --windows | jq -r --arg curr "$CURRENT_SPACE" 'map(select(."is-minimized" == false and ( .frame.x == 0 or (.title | length > 0) ) and .space > ($curr | tonumber))) | sort_by(.space) | .[].space')
+prev=$(yabai -m query --windows | jq -r --arg curr "$CURRENT_SPACE" 'map(select(."is-minimized" == false and ( .frame.x == 0 or (.title | length > 0) ) and .space < ($curr | tonumber))) | sort_by(.space) | reverse | .[].space')
+last=$(yabai -m query --windows | jq -r --arg curr "$CURRENT_SPACE" 'map(select(."is-minimized" == false and ( .frame.x == 0 or (.title | length > 0) ))) | sort_by(.space) | reverse | .[].space')
 
 if [[ ! $next || $next == null ]]; then
   next=$first
