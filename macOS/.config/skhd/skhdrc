@@ -29,6 +29,7 @@ ctrl - 5 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [
 ctrl - 6 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[6] ]] && yabai -m space --focus $SPACES[6]
 ctrl - 7 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[7] ]] && yabai -m space --focus $SPACES[7]
 ctrl - 8 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[8] ]] && yabai -m space --focus $SPACES[8]
+ctrl - 9 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[9] ]] && yabai -m space --focus $SPACES[9]
 
 # Focus on <ARROW> window (Omarchy: SUPER + <ARROW>)
 lcmd - left  : yabai -m window --focus west  || yabai -m display --focus west
@@ -61,10 +62,12 @@ shift + ctrl - 3 : yabai -m window --space 3 --focus
 shift + ctrl - 4 : yabai -m window --space 4 --focus
 
 # Next space (Omarchy: SUPER + TAB)
-ctrl - tab         : yabai -m space --focus next || yabai -m space --focus first
+#ctrl - tab         : yabai -m space --focus next || yabai -m space --focus first
+ctrl - tab         : sh ~/.config/yabai/change_space.sh next
 
 # Former space (Omarchy: SUPER CTRL + TAB)
-shift + ctrl - tab : yabai -m space --focus prev || yabai -m space --focus last
+#shift + ctrl - tab : yabai -m space --focus prev || yabai -m space --focus last
+shift + ctrl - tab : sh ~/.config/yabai/change_space.sh prev
 
 # Mirror Space on X and Y Axis: shift + lalt - {x, y}
 shift + lalt - up    : yabai -m space --mirror x-axis
