@@ -8,10 +8,11 @@ yabai -m signal --add event=window_created action="sh ~/.config/yabai/single_win
 yabai -m signal --add event=window_destroyed action="sh ~/.config/yabai/single_window.sh"
 yabai -m signal --add event=window_minimized action="sh ~/.config/yabai/single_window.sh"
 yabai -m signal --add event=window_deminimized action="sh ~/.config/yabai/single_window.sh"
-yabai -m signal --add event=space_changed action="sh ~/.config/yabai/single_window.sh"
+yabai -m signal --add event=space_changed action="sleep 1 && sh ~/.config/yabai/single_window.sh"
 #yabai -m signal --add event=display_changed action="sh ~/.config/yabai/single_window.sh"
 
 yabai -m signal --add event=window_destroyed action="/usr/bin/osascript -l JavaScript ~/.config/yabai/autoquit.jsx"
+yabai -m signal --add event=window_destroyed action="sh ~/.config/yabai/empty_space.sh"
 
 yabai -m config \ #external_bar all:40:0 \
   mouse_follows_focus on \
