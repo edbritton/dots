@@ -12,7 +12,7 @@ yabai -m signal --add event=space_changed action="sleep 1 && sh ~/.config/yabai/
 #yabai -m signal --add event=display_changed action="sh ~/.config/yabai/single_window.sh"
 
 yabai -m signal --add event=window_destroyed action="/usr/bin/osascript -l JavaScript ~/.config/yabai/autoquit.jsx"
-yabai -m signal --add event=window_destroyed action="sh ~/.config/yabai/empty_space.sh"
+yabai -m signal --add event=window_destroyed action="sh ~/.config/yabai/change_space.sh"
 
 yabai -m config \ #external_bar all:40:0 \
   mouse_follows_focus on \
@@ -42,7 +42,7 @@ yabai -m config \ #external_bar all:40:0 \
   window_gap 7
 
 # Exclude problematic apps from being managed:
-yabai -m rule --add app="^(LuLu|Calculator|Software Update|Dictionary|VLC|System Preferences|System Settings|zoom.us|Photo Booth|Archive Utility|Python|LibreOffice|App Store|Steam|Alfred|Activity Monitor)$" manage=off
+yabai -m rule --add app="^(LuLu|Calculator|Software Update|Dictionary|VLC|System Preferences|System Settings|zoom.us|Photo Booth|Archive Utility|Python|LibreOffice|App Store|Steam|Alfred|Activity Monitor|Tips)$" manage=off
 yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
 yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension|Feature Flag)s|AutoFill|Se(arch|curity)|Privacy|Advanced|Developer)$" manage=off
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
