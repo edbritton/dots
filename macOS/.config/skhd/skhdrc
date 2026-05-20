@@ -5,13 +5,16 @@
 
 # App keybindings (can be done with Shortcuts instead)
 # Found the Shortcuts to be more reliable, when they actually run, these make sure the keybindings work more often
-lcmd - return          : osascript -e 'tell app "Terminal" to do script "" activate'
+lcmd - return [
+  * : osascript -e 'tell app "Terminal" to do script "" activate'
+  "Terminal" : skhd -k "cmd - n"
+]
 shift + lcmd - return  : shortcuts run 'Open browser'
 shift + lcmd - f       : open -a "Finder"
 shift + lcmd - g       : open -a "Messages"
 shift + lcmd - o       : open -a "Obsidian"
 shift + lcmd - y       : open -a "YouTube"
-fn + ctrl + lalt - c   : res=$(system_profiler SPDisplaysDataType | grep Resolution | jq -R 'capture("Resolution:\\s*(?<w>[0-9]+)\\s*x\\s*(?<h>[0-9]+)") | [.w, .h] | map(tonumber)'); w=$(echo "$res" | jq '.[0]'); h=$(echo "$res" | jq '.[1]'); x=$(( (w - h) /2 )); pgrep -q yabai && { yabai -m window --grid $h:$w:$x:0:$h:$h; true; } || shortcuts run "Square the window"
+fn + ctrl + lalt - c   : res=$(system_profiler SPDisplaysDataType | grep Resolution | jq -R 'capture("Resolution:\\s*(?<w>[0-9]+)\\s*x\\s*(?<h>[0-9]+)") | [.w, .h] | map(tonumber)'); w=$(echo "$res" | jq '.[0]'); h=$(echo "$res" | jq '.[1]'); x=$(( (w - h) / 2 )); pgrep -q yabai && { yabai -m window --grid $h:$w:$x:0:$h:$h; true; } || shortcuts run "Square the window"
 #shift + lcmd - return : osascript -e 'tell application "Safari" to make new document'
 
 #trying to make Signal behave like Messages when opening in a Space
@@ -19,6 +22,8 @@ fn + ctrl + lalt - c   : res=$(system_profiler SPDisplaysDataType | grep Resolut
 
 # Quicker lockscreen binding
 fn - l : skhd -k 'ctrl + cmd - q'
+
+# Turn yabai on and off
 fn - y : if pgrep -x yabai > /dev/null; then yabai --stop-service && brew services start autoraise; else yabai --start-service && brew services stop autoraise; fi
 
 ## Navigation (lalt - ...)
@@ -41,6 +46,9 @@ lcmd - right : yabai -m window --focus east  || yabai -m display --focus east
 
 # Toggle window tiling (Omarchy: SUPER + T)
 lalt - t : yabai -m window --toggle float
+
+# Toggle space tiling
+fn + lalt - t : yabai -m query --spaces --space | jq -e '.type == "bsp"' > /dev/null && yabai -m space --layout float || yabai -m space --layout bsp
 
 # Full width (Omarchy: SUPER ALT + F)
 lalt + lcmd - f : yabai -m window --toggle zoom-fullscreen # was: shift + lalt - f
@@ -65,11 +73,17 @@ shift + ctrl - 4 : yabai -m window --space 4 --focus
 
 # Next space (Omarchy: SUPER + TAB)
 #ctrl - tab         : yabai -m space --focus next || yabai -m space --focus first
-fn - tab         : sh ~/.config/yabai/change_space.sh next
+ctrl - tab [
+  "Messages" ~
+  * : sh ~/.config/yabai/change_space.sh next
+]
 
 # Former space (Omarchy: SUPER CTRL + TAB)
 #shift + ctrl - tab : yabai -m space --focus prev || yabai -m space --focus last
-shift + fn - tab : sh ~/.config/yabai/change_space.sh prev
+shift + ctrl - tab [
+  "Messages" ~
+  * : sh ~/.config/yabai/change_space.sh prev
+]
 
 # Mirror Space on X and Y Axis: shift + lalt - {x, y}
 shift + lalt - up    : yabai -m space --mirror x-axis
@@ -80,7 +94,7 @@ shift + lalt - right : yabai -m space --mirror y-axis
 # Stacks are groups: SUPER/ALT/TAB is cycle groups on Omarchy
 
 # Toggle window grouping (Omarchy: SUPER + G)
-lalt - g : yabai -m window --stack recent || yabai -m window --toggle float
+#lalt - g : yabai -m window --stack recent || yabai -m window --toggle float
 
 # Move window to group on <ARROW> (Omarchy: SUPER ALT + <ARROW>)
 #lalt + lcmd - left  : yabai -m window  west --stack $(yabai -m query --windows --window | jq -r '.id')
@@ -89,11 +103,12 @@ lalt - g : yabai -m window --stack recent || yabai -m window --toggle float
 #lalt + lcmd - right : yabai -m window  east --stack $(yabai -m query --windows --window | jq -r '.id')
 
 # Next window in stack (Omarchy: SUPER ALT + TAB)
-cmd + lalt - tab : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+#cmd + lalt - tab : yabai -m window --focus stack.next || yabai -m window --focus stack.first
 
 # Previous window in stack (Omarchy: SUPER SHIFT ALT + TAB)
-shift + lcmd + lalt - tab : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+#shift + lcmd + lalt - tab : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
 
+# Cycle between tiled windows
 lalt - tab : yabai -m window --focus next || yabai -m window --focus first
 shift + lalt - tab : yabai -m window --focus prev || yabai -m window --focus last
 
@@ -129,4 +144,4 @@ lalt - s : yabai -m window --insert east;  skhd -k "cmd - n"
 lalt - v : yabai -m window --insert south; skhd -k "cmd - n"
 
 # Toggle sketchybar
-shift + lalt - space : sketchybar --bar hidden=toggle
+#shift + lalt - space : sketchybar --bar hidden=toggle
