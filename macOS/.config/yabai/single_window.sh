@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-EXCLUDED_APPS='^(LuLu|Calculator|Software Update|Dictionary|VLC|System Preferences|System Settings|zoom.us|Photo Booth|Archive Utility|Python|LibreOffice|App Store|Steam|Alfred|Activity Monitor|Tips)$'
+EXCLUDED_APPS='^(LuLu|Calculator|Software Update|Dictionary|VLC|System Preferences|System Settings|zoom.us|Photo Booth|Archive Utility|Python|LibreOffice|App Store|Steam|Alfred|Activity Monitor|Tips|FaceTime)$'
 
 WINDOWS_IN_SPACE=$(yabai -m query --windows --space)
 WINDOW_COUNT=$(echo "$WINDOWS_IN_SPACE" | jq --arg excl "$EXCLUDED_APPS" '[.[] | select(."is-visible"==true and ."can-resize"==true and ."is-native-fullscreen"==false and (.app | test($excl) | not) )] | length')
@@ -22,7 +22,12 @@ if [ "$WINDOW_COUNT" -eq 1 ]; then
     if [ "$APP_NAME" == \"Obsidian\" ]; then
       skhd -k 'fn + ctrl - f'
     else
-      shortcuts run 'Square the window'
+      #shortcuts run 'Square the window'
+      res=$(system_profiler SPDisplaysDataType | grep Resolution | jq -R 'capture("Resolution:\\s*(?<w>[0-9]+)\\s*x\\s*(?<h>[0-9]+)") | [.w, .h] | map(tonumber)')
+      w=$(echo "$res" | jq '.[0]')
+      h=$(echo "$res" | jq '.[1]')
+      x=$(((w - h) / 2))
+      yabai -m window --grid $h:$w:$x:0:$h:$h
     fi
   fi
 elif [ "$WINDOW_COUNT" -gt 1 ]; then
