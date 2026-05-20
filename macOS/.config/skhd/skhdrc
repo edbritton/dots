@@ -5,15 +5,17 @@
 
 # App keybindings (can be done with Shortcuts instead)
 # Found the Shortcuts to be more reliable, when they actually run, these make sure the keybindings work more often
+lcmd - return          : osascript -e 'tell app "Terminal" to do script "" activate'
 shift + lcmd - return  : shortcuts run 'Open browser'
-shift + lcmd - f       : shortcuts run 'Open Finder'
-shift + lcmd - g       : shortcuts run 'Open messages'
-shift + lcmd - o       : shortcuts run 'Open Obsidian'
-shift + lcmd - y       : shortcuts run 'Open YouTube'
-fn + ctrl + lalt - c   : shortcuts run 'Square the window'
-#lcmd - return         : osascript -e 'tell app "Terminal" to do script "" activate'
+shift + lcmd - f       : open -a "Finder"
+shift + lcmd - g       : open -a "Messages"
+shift + lcmd - o       : open -a "Obsidian"
+shift + lcmd - y       : open -a "YouTube"
+fn + ctrl + lalt - c   : res=$(system_profiler SPDisplaysDataType | grep Resolution | jq -R 'capture("Resolution:\\s*(?<w>[0-9]+)\\s*x\\s*(?<h>[0-9]+)") | [.w, .h] | map(tonumber)'); w=$(echo "$res" | jq '.[0]'); h=$(echo "$res" | jq '.[1]'); x=$(( (w - h) /2 )); pgrep -q yabai && { yabai -m window --grid $h:$w:$x:0:$h:$h; true; } || shortcuts run "Square the window"
 #shift + lcmd - return : osascript -e 'tell application "Safari" to make new document'
-#shift + lcmd - y      : osascript -e 'tell application "YouTube" to make activate'
+
+#trying to make Signal behave like Messages when opening in a Space
+#signal_id=$(yabai -m query --windows | jq -r 'map(select(.app == "Signal")).[0].id'); curr=$(yabai -m query --spaces --space | jq -r '.index'); open -a "Signal" && sleep 0.3 && yabai -m window --space $curr --focus
 
 # Quicker lockscreen binding
 fn - l : skhd -k 'ctrl + cmd - q'
@@ -47,10 +49,10 @@ lalt + lcmd - f : yabai -m window --toggle zoom-fullscreen # was: shift + lalt -
 lalt - f : yabai -m window --toggle zoom-parent
 
 # Swap window to the <ARROW> (Omarchy: SUPER SHIFT + <ARROW>)
-shift + lcmd - left  : yabai -m window --swap west || $(yabai -m window --display west && yabai -m display --focus west && yabai -m window --warp last) || yabai -m window --move rel:-10:0
-shift + lcmd - down  : yabai -m window --swap south || $(yabai -m window --display south && yabai -m display --focus south) || yabai -m window --move rel:0:10
-shift + lcmd - up    : yabai -m window --swap north || $(yabai -m window --display north && yabai -m display --focus north) || yabai -m window --move rel:0:-10
-shift + lcmd - right : yabai -m window --swap east || $(yabai -m window --display east && yabai -m display --focus east && yabai -m window --warp first) || yabai -m window --move rel:10:0
+shift + lcmd - left  : yabai -m window --swap west || $(yabai -m window --display west && yabai -m display --focus west && yabai -m window --warp last) || yabai -m window --move rel:-8:0
+shift + lcmd - down  : yabai -m window --swap south || $(yabai -m window --display south && yabai -m display --focus south) || yabai -m window --move rel:0:8
+shift + lcmd - up    : yabai -m window --swap north || $(yabai -m window --display north && yabai -m display --focus north) || yabai -m window --move rel:0:-8
+shift + lcmd - right : yabai -m window --swap east || $(yabai -m window --display east && yabai -m display --focus east && yabai -m window --warp first) || yabai -m window --move rel:8:0
 
 # Toggle window split (Omarchy: SUPER + J)
 lcmd - j : yabai -m window --toggle split
@@ -63,11 +65,11 @@ shift + ctrl - 4 : yabai -m window --space 4 --focus
 
 # Next space (Omarchy: SUPER + TAB)
 #ctrl - tab         : yabai -m space --focus next || yabai -m space --focus first
-ctrl - tab         : sh ~/.config/yabai/change_space.sh next
+fn - tab         : sh ~/.config/yabai/change_space.sh next
 
 # Former space (Omarchy: SUPER CTRL + TAB)
 #shift + ctrl - tab : yabai -m space --focus prev || yabai -m space --focus last
-shift + ctrl - tab : sh ~/.config/yabai/change_space.sh prev
+shift + fn - tab : sh ~/.config/yabai/change_space.sh prev
 
 # Mirror Space on X and Y Axis: shift + lalt - {x, y}
 shift + lalt - up    : yabai -m space --mirror x-axis
