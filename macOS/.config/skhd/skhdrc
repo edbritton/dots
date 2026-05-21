@@ -12,9 +12,8 @@ lcmd - return [
 shift + lcmd - return  : shortcuts run 'Open browser'
 shift + lcmd - f       : open -a "Finder"
 shift + lcmd - g       : open -a "Messages"
-shift + lcmd - o       : open -a "Obsidian"
+shift + lcmd - o       : open "obsidian://open?vault=standup" #open -a "Obsidian"
 shift + lcmd - y       : open -a "YouTube"
-fn + ctrl + lalt - c   : res=$(system_profiler SPDisplaysDataType | grep Resolution | jq -R 'capture("Resolution:\\s*(?<w>[0-9]+)\\s*x\\s*(?<h>[0-9]+)") | [.w, .h] | map(tonumber)'); w=$(echo "$res" | jq '.[0]'); h=$(echo "$res" | jq '.[1]'); x=$(( (w - h) / 2 )); pgrep -q yabai && { yabai -m window --grid $h:$w:$x:0:$h:$h; true; } || shortcuts run "Square the window"
 #shift + lcmd - return : osascript -e 'tell application "Safari" to make new document'
 
 #trying to make Signal behave like Messages when opening in a Space
@@ -49,6 +48,11 @@ lalt - t : yabai -m window --toggle float
 
 # Toggle space tiling
 fn + lalt - t : yabai -m query --spaces --space | jq -e '.type == "bsp"' > /dev/null && yabai -m space --layout float || yabai -m space --layout bsp
+
+# Square and centre this window
+fn + ctrl + lalt - c   : res=$(system_profiler SPDisplaysDataType | grep Resolution | jq -R 'capture("Resolution:\\s*(?<w>[0-9]+)\\s*x\\s*(?<h>[0-9]+)") | [.w, .h] | map(tonumber)'); w=$(echo "$res" | jq '.[0]'); h=$(echo "$res" | jq '.[1]'); x=$(( (w - h) / 2 )); pgrep -q yabai && { yabai -m window --grid $h:$w:$x:0:$h:$h; true; } || shortcuts run "Square the window"
+#ctrl - pageup   : win=$(yabai -m query --windows --window);dsp=$(yabai -m query --displays --display "$(echo "$win"|jq '.display')");if echo "$win" "$dsp"|jq -e -s '.[0].frame.x+(.[0].frame.w/2)<=.[1].frame.w/2'>/dev/null;then yabai -m window --grid 2:2:0:0:1:1;else yabai -m window --grid 2:2:1:0:1:1;fi
+#ctrl - pagedown : win=$(yabai -m query --windows --window);dsp=$(yabai -m query --displays --display "$(echo "$win"|jq '.display')");if echo "$win" "$dsp"|jq -e -s '.[0].frame.x+(.[0].frame.w/2)<=.[1].frame.w/2'>/dev/null;then yabai -m window --grid 2:2:0:1:1:1;else yabai -m window --grid 2:2:1:1:1:1;fi
 
 # Full width (Omarchy: SUPER ALT + F)
 lalt + lcmd - f : yabai -m window --toggle zoom-fullscreen # was: shift + lalt - f
@@ -128,6 +132,9 @@ ctrl + lalt - e : yabai -m space --balance
 
 # Toggle space gaps (Omarchy: SHUPER SHIFT + BACKSPACE)
 shift + lcmd - backspace : yabai -m space --toggle padding; yabai -m space --toggle gap
+ctrl + lalt + lcmd - up   : yabai -m space --padding rel:7:8:8:8 && yabai -m space --gap rel:7
+ctrl + lalt + lcmd - down : yabai -m space --padding rel:-7:-8:-8:-8 && yabai -m space --gap rel:-7
+ctrl + lalt + lcmd - e    : yabai -m space --padding abs:7:8:8:8 && yabai -m space --gap abs:7
 
 ctrl + lalt - b : yabai -m window --toggle border
 
