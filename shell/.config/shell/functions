@@ -1,3 +1,7 @@
+rm() {
+  command rm -v "$@" 2>&1 | nl -w2 -s". "
+}
+
 # Use HandBrake to convert MKV to MP4
 # First draft for macOS based media soltuions, might use GUI instead
 mkv2mp4() {
