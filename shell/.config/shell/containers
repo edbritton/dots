@@ -1,6 +1,12 @@
 # Apple Containers -- but might figure out a Docker option
 
+command -v container &>/dev/null || return 1
+
 transmission() {
+  if ! container system status &>/dev/null; then
+    container system start || return 1
+  fi
+
   container run --rm --detach \
     --name transmission \
     -e PUID=1000 \
@@ -19,5 +25,5 @@ transmission() {
     -v ~/.config/transmission/:/config \
     -v ~/Downloads/torrents/watch/:/watch \
     -u 1000:1000 \
-    lscr.io/linuxserver/transmission:latest'
+    lscr.io/linuxserver/transmission:latest
 }
