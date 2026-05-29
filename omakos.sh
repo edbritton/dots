@@ -7,6 +7,7 @@ set -eu
 # NOTES
 # https://gist.github.com/ChristopherA/98628f8cd00c94f11ee6035d53b0d3c6
 # defaults read com.apple.symbolichotkeys
+# https://herrbischoff.com/code/me/awesome-macos-command-line
 
 # Enable TouchID for sudo auth -- required
 # This is hard because of macOS privileges being crazy
