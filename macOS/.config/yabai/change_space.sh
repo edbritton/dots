@@ -2,6 +2,17 @@
 
 set -euo pipefail
 
+if ! pgrep -q yabai; then
+    case "${1:-recent}" in
+        next)   skhd -k 'ctrl - right' ;;
+        prev)   skhd -k 'ctrl - left' ;;
+        first)  skhd -k 'ctrl - 1' ;;
+        last)   skhd -k 'ctrl - right' ;;
+        recent) skhd -k 'ctrl - left' ;;
+    esac
+    exit 0
+fi
+
 if [ $# -eq 0 ]; then
   sleep 0.3
 
