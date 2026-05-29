@@ -6,7 +6,7 @@
 # App keybindings (can be done with Shortcuts instead)
 # Found the Shortcuts to be more reliable, when they actually run, these make sure the keybindings work more often
 lcmd - return [
-  * : osascript -e 'tell app "Terminal" to do script "" activate'
+  * : { lsappinfo info -n "Terminal" 2>/dev/null | grep -q . && osascript -e 'tell app "Terminal" to do script "" activate'; } || open -a "Terminal"
   "Terminal" : skhd -k "cmd - n"
 ]
 shift + lcmd - return  : shortcuts run 'Open browser'
@@ -20,7 +20,7 @@ shift + lcmd - y       : open -a "YouTube"
 #signal_id=$(yabai -m query --windows | jq -r 'map(select(.app == "Signal")).[0].id'); curr=$(yabai -m query --spaces --space | jq -r '.index'); open -a "Signal" && sleep 0.3 && yabai -m window --space $curr --focus
 
 # Quicker lockscreen binding
-fn - l : skhd -k 'ctrl + cmd - q'
+fn - l : open -a ScreenSaverEngine && skhd -k 'ctrl + cmd - q'; nowplaying-cli pause
 
 # Turn yabai on and off
 fn - y : if pgrep -x yabai > /dev/null; then yabai --stop-service && brew services start autoraise; else yabai --start-service && brew services stop autoraise; fi
@@ -50,9 +50,7 @@ lalt - t : yabai -m window --toggle float
 fn + lalt - t : yabai -m query --spaces --space | jq -e '.type == "bsp"' > /dev/null && yabai -m space --layout float || yabai -m space --layout bsp
 
 # Square and centre this window
-fn + ctrl + lalt - c   : res=$(system_profiler SPDisplaysDataType | grep Resolution | jq -R 'capture("Resolution:\\s*(?<w>[0-9]+)\\s*x\\s*(?<h>[0-9]+)") | [.w, .h] | map(tonumber)'); w=$(echo "$res" | jq '.[0]'); h=$(echo "$res" | jq '.[1]'); x=$(( (w - h) / 2 )); pgrep -q yabai && { yabai -m window --grid $h:$w:$x:0:$h:$h; true; } || shortcuts run "Square the window"
-#ctrl - pageup   : win=$(yabai -m query --windows --window);dsp=$(yabai -m query --displays --display "$(echo "$win"|jq '.display')");if echo "$win" "$dsp"|jq -e -s '.[0].frame.x+(.[0].frame.w/2)<=.[1].frame.w/2'>/dev/null;then yabai -m window --grid 2:2:0:0:1:1;else yabai -m window --grid 2:2:1:0:1:1;fi
-#ctrl - pagedown : win=$(yabai -m query --windows --window);dsp=$(yabai -m query --displays --display "$(echo "$win"|jq '.display')");if echo "$win" "$dsp"|jq -e -s '.[0].frame.x+(.[0].frame.w/2)<=.[1].frame.w/2'>/dev/null;then yabai -m window --grid 2:2:0:1:1:1;else yabai -m window --grid 2:2:1:1:1:1;fi
+fn + ctrl + lalt - c   : pgrep -q yabai && { yabai -m window --grid 10:16:3:0:10:10; skhd -k 'fn + ctrl - c'; true; } || shortcuts run "Square the window"
 
 # Full width (Omarchy: SUPER ALT + F)
 lalt + lcmd - f : yabai -m window --toggle zoom-fullscreen # was: shift + lalt - f
