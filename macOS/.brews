@@ -3,17 +3,21 @@ brew "mas"
 brew "stow"
 
 # Terminal and shell upgrades
-brew "bat"
-brew "eza"
-brew "fd"
-brew "fzf"
-brew "ripgrep"
+brew "bat"                            # better cat
+brew "eza"                            # better ls
+brew "fd"                             # better find
+brew "fdupes"                         # duplicate finder
+brew "fzf"                            # fuzzy find
+brew "leaf-md"                        # markdown viewer tui
+brew "ripgrep"                        # better grep
 brew "starship"
 cask "font-fira-code-nerd-font"
 
 # Self-hosting and cross-platform
+#brew "app" if `system_profiler -json SPMemoryDataType 2>/dev/null | jq -r '.[].[].SPMemoryDataType | split(" ")[0] | tonumber'`.to_i > 16
 #brew "handbrake"                     # for ARM
 #cask "iina"                          # (this && Jellyfin) || Infuse
+#brew "radiosilence/watchwoman/watchwoman"
 cask "syncthing-app"
 cask "signal"
 #mas "Infuse", id: 1136220934         # this || (iina && Jellyfin)
@@ -26,16 +30,17 @@ cask "virtualbuddy"
 brew "asmvik/formulae/skhd"           # use with yabai, might replace keybind Shortcuts
 brew "asmvik/formulae/yabai"          # requires sudo manipulation for all features
 brew "dimentium/autoraise/autoraise"  # used as fallback when yabai is off
+brew "nowplaying-cli"                 # needed for one skhd keybind
 cask "middleclick"
 
 # Apps
-#brew "opencode"                      # Designing
+#brew "opencode"                      # Coding
 cask "obsidian"                       # Writing
 #cask "openscad@snapshot"             # Designing
 #mas "Reeder", id: 6475002485
 
 # Utilities
-#brew "pairpods"
+#brew "pairpods"                      # Dual bluetooth output
 #mas "JoyKeyMapper", id: 1511416593   # replaced with manaporkun/JoyMapKit
 #mas "TrashMe", id: 443126292
 
