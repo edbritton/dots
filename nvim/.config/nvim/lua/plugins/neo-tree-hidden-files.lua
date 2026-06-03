@@ -13,8 +13,8 @@ return {
 					"thumbs.db",
 				},
 				always_show_by_pattern = {
-					"*/.dot*s/*",
-					"*/.dot*s/*/.*",
+					"*/.dots/*",
+					"*/.dots/*/.*",
 				},
 				never_show = {
 					".git",
