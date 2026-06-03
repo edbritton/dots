@@ -14,7 +14,7 @@ return {
 				},
 				always_show_by_pattern = {
 					"*/.dots/*",
-					"*/.dots/*/.*",
+					"*/.dots/*/.*/",
 				},
 				never_show = {
 					".git",
