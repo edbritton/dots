@@ -1,7 +1,9 @@
-/*@define-color foreground white;*/
+@define-color foreground white;
 @define-color background rgba(0,0,0,0.6);
 
 window#waybar {
+  background: linear-gradient(rgba(0,0,0,0.3), transparent);
+  text-shadow: 0 0 9px rgba(0,0,0,0.5);
 }
 
 * {
@@ -9,27 +11,30 @@ window#waybar {
 }
 
 .modules-left, .modules-center, .modules-right {
-  background: @background;
+  /*background: @background;*/
   border-radius: 1em;
-  color: white;
   padding: 0 6px;
   margin: 2px 0;
 }
 
 .modules-left {
-  border-radius: 0 1em 1em 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
 }
 
 .modules-center {
+  opacity: 0.3;
   padding-right: 12px;
 }
 
 .modules-right {
-  border-radius: 1em 0 0 1em;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
 }
 
 tooltip {
   background: @background;
   border-radius: 1em;
+  color: white;
   padding: 1px;
 }
