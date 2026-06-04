@@ -3,52 +3,55 @@ brew "mas"
 brew "stow"
 
 # Terminal and shell upgrades
-brew "bat"                            # better cat
-brew "eza"                            # better ls
-brew "fd"                             # better find
-brew "fdupes"                         # duplicate finder
-brew "fzf"                            # fuzzy find
-brew "leaf-md"                        # markdown viewer tui
-brew "ripgrep"                        # better grep
+brew "bat"                                 # better cat
+brew "eza"                                 # better ls
+brew "fd"                                  # better find
+brew "fdupes"                              # duplicate finder
+brew "fzf"                                 # fuzzy find
+brew "leaf-md"                             # markdown viewer tui
+brew "ripgrep"                             # better grep
 brew "starship"
 cask "font-fira-code-nerd-font"
 
 # Self-hosting and cross-platform
 #brew "app" if `system_profiler -json SPMemoryDataType 2>/dev/null | jq -r '.[].[].SPMemoryDataType | split(" ")[0] | tonumber'`.to_i > 16
-#brew "handbrake"                     # for ARM
-#cask "iina"                          # (this && Jellyfin) || Infuse
-#brew "radiosilence/watchwoman/watchwoman"
-cask "syncthing-app"
-cask "signal"
-#mas "Infuse", id: 1136220934         # this || (iina && Jellyfin)
+#brew "radiosilence/watchwoman/watchwoman" # intented for automation on folder changes
+#cask "iina"                               # (this && Jellyfin) || Infuse
+#cask "syncthing-app"
+#mas "Infuse", id: 1136220934              # this || (iina && Jellyfin)
+
+# Media machine
+#brew "handbrake"                          # for ARM -- might be conainterised
 
 # VMs and containers
 brew "container"
-cask "virtualbuddy"
+#cask "ghostvm"
+#cask "virtualbuddy"
 
-# Windows Manager stuff
-brew "asmvik/formulae/skhd"           # use with yabai, might replace keybind Shortcuts
-brew "asmvik/formulae/yabai"          # requires sudo manipulation for all features
-brew "dimentium/autoraise/autoraise"  # used as fallback when yabai is off
-brew "nowplaying-cli"                 # needed for one skhd keybind
+# Window Management
+brew "asmvik/formulae/skhd"                # use with yabai, might replace keybind Shortcuts
+brew "asmvik/formulae/yabai"               # requires sudo manipulation for all features
+brew "dimentium/autoraise/autoraise"       # used as fallback when yabai is off
+brew "nowplaying-cli"                      # needed for one skhd keybind
 cask "middleclick"
 
 # Apps
-#brew "opencode"                      # Coding
-cask "obsidian"                       # Writing
-#cask "openscad@snapshot"             # Designing
+#brew "opencode"                           # Coding
+cask "obsidian"                            # Writing
+#cask "openscad@snapshot"                  # Designing
+cask "signal"
 #mas "Reeder", id: 6475002485
 
 # Utilities
-#brew "pairpods"                      # Dual bluetooth output
-#mas "JoyKeyMapper", id: 1511416593   # replaced with manaporkun/JoyMapKit
+#brew "pairpods"                           # Dual bluetooth output
+#mas "JoyKeyMapper", id: 1511416593        # replaced with manaporkun/JoyMapKi
 #mas "TrashMe", id: 443126292
 
 # Safari extensions
 mas "Baking Soda", id: 1601151613
 mas "Hush", id: 1544743900
-#mas "Rerouter", id: 1589151155
-#mas "Userscripts", id: 1463298887    # replaced by TestFlight app
+#mas "Rerouter", id: 1589151155            # seems out of the App Store
+#mas "Userscripts", id: 1463298887         # replaced by TestFlight app
 mas "Vinegar", id: 1591303229
 mas "uBlock Origin Lite", id: 6745342698
 
