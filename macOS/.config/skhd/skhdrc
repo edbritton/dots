@@ -1,6 +1,6 @@
 # Fork of <https://github.com/FelixKratz/dotfiles/blob/master/.config/skhd/skhdrc>
 # also see <https://github.com/asmvik/dotfiles>
-# some idead <https://notes.alinpanaitiu.com/Keyboard-tricks-from-a-macOS-app-dev#fn-key>
+# some ideas <https://notes.alinpanaitiu.com/Keyboard-tricks-from-a-macOS-app-dev#fn-key>
 # fn keys to avoid: A, C, D, N
 
 # App keybindings (can be done with Shortcuts instead)
@@ -9,12 +9,12 @@ lcmd - return [
   * : { lsappinfo info -n "Terminal" 2>/dev/null | grep -q . && osascript -e 'tell app "Terminal" to do script "" activate'; } || open -a "Terminal"
   "Terminal" : skhd -k "cmd - n"
 ]
-shift + lcmd - return  : shortcuts run 'Open browser'
-shift + lcmd - f       : open -a "Finder"
-shift + lcmd - g       : open -a "Messages"
-shift + lcmd - o       : open "obsidian://open?vault=standup" #open -a "Obsidian"
-shift + lcmd - y       : open -a "YouTube"
-#shift + lcmd - return : osascript -e 'tell application "Safari" to make new document'
+shift + lcmd - return   : shortcuts run 'Open browser' #osascript -e 'tell application "Safari" to make new document'
+shift + lcmd - f        : open -a "Finder"
+shift + lcmd - g        : open -a "Messages"
+shift + lcmd - o        : open "obsidian://open?vault=standup"
+shift + lalt + lcmd - o : open "obsidian://open?vault=screenplays"
+shift + lcmd - y        : open -a "YouTube"
 
 #trying to make Signal behave like Messages when opening in a Space
 #signal_id=$(yabai -m query --windows | jq -r 'map(select(.app == "Signal")).[0].id'); curr=$(yabai -m query --spaces --space | jq -r '.index'); open -a "Signal" && sleep 0.3 && yabai -m window --space $curr --focus
