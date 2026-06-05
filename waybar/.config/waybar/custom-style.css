@@ -6,6 +6,29 @@ window#waybar {
   text-shadow: 0 0 9px rgba(0,0,0,0.5);
 }
 
+label.module,
+#bluetooth,
+#clock,
+#custom-weather,
+#cpu,
+#battery,
+#network,
+#tray,
+#custom-expand-icon,
+#pulseaudio,
+#custom-omarchy,
+#custom-update {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 24px;
+}
+
+#clock {
+  padding: 0 6px;
+}
+
 #custom-minimized, .modules-right > * {
   margin: 0 7px;
   padding: 0 4px;
@@ -50,4 +73,41 @@ tooltip {
   border-radius: 1em;
   color: white;
   padding: 1px;
+}
+
+#pulseaudio-slider {
+    padding: 0 5px;
+    margin: 0;
+}
+#pulseaudio-slider slider {
+    min-height: 0px;
+    min-width: 0px;
+    opacity: 0;
+    background-image: none;
+    border: none;
+    border-radius: 100%;
+    box-shadow: none;
+}
+#pulseaudio-slider trough {
+    min-height: 4px;
+    min-width: 80px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.4);
+}
+#pulseaudio-slider highlight {
+    min-width: 12px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.8);
+}
+
+#custom-mic-level.quiet {
+  color: #30d158;
+  margin: 0 -2px 0 2px;
+  padding-left: 4px;
+}
+
+#custom-mic-level.active {
+  color: #ff9f0a;
+  margin: 0 -2px 0 2px;
+  padding-left: 4px;
 }
