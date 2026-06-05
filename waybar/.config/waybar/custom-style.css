@@ -6,6 +6,20 @@ window#waybar {
   text-shadow: 0 0 9px rgba(0,0,0,0.5);
 }
 
+#custom-minimized, .modules-right > * {
+  margin: 0 7px;
+  padding: 0 4px;
+}
+
+#custom-minimized.empty {
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+}
+
+#custom-minimized.has-minimized {
+}
+
 * {
   background-color: transparent;
 }
@@ -23,7 +37,6 @@ window#waybar {
 }
 
 .modules-center {
-  opacity: 0.3;
   padding-right: 12px;
 }
 

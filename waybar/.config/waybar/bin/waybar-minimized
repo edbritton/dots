@@ -1,0 +1,89 @@
+#!/bin/bash
+
+poll() {
+  hyprctl clients | awk '
+    BEGIN { RS=""; FS="\n" }
+
+    /special:minimize/ {
+      count++
+      cls = ""; title = ""
+      for (i = 1; i <= NF; i++) {
+        if ($i ~ /^[[:space:]]*class:/)  cls   = substr($i, index($i, ":") + 2)
+        if ($i ~ /^[[:space:]]*title:/)  title = substr($i, index($i, ":") + 2)
+      }
+      if (sep)  titles = titles sep cls " - " title
+      else      titles = cls " - " title
+      sep = "\\n"
+    }
+
+    END {
+      if (count == 0) {
+        print "{\"text\":\"\",\"class\":\"empty\",\"tooltip\":\"No minimized windows\"}"
+      } else {
+        printf "{\"text\":\"\uef3e %s\",\"class\":\"has-minimized\",\"tooltip\":\"%s\"}\n", count, titles
+      }
+    }
+  '
+}
+
+restore() {
+  local map
+  map=$(mktemp /tmp/walker-minimize.XXXXXX)
+  trap 'rm -f "$map"' EXIT
+
+  hyprctl clients | awk '
+    BEGIN { RS=""; FS="\n" }
+
+    /special:minimize/ {
+      addr = ""; cls = ""; title = ""
+      for (i = 1; i <= NF; i++) {
+        if ($i ~ /^Window /) {
+          split($i, w, " ")
+          addr = "0x" w[2]
+          sub(/->$/, "", addr)
+        }
+        if ($i ~ /^[[:space:]]*class:/)  cls   = substr($i, index($i, ":") + 2)
+        if ($i ~ /^[[:space:]]*title:/)  title = substr($i, index($i, ":") + 2)
+      }
+      print addr "|" cls " - " title
+    }
+  ' > "$map"
+
+  local count
+  count=$(wc -l < "$map")
+
+  if [ "$count" -eq 0 ]; then
+    notify-send "Minimize" "No minimized windows" -t 2000
+    exit 0
+  fi
+
+  # Single window — restore directly
+  if [ "$count" -eq 1 ]; then
+    local addr
+    addr=$(cut -d'|' -f1 < "$map")
+    hyprctl dispatch movetoworkspace +0,address:"$addr"
+    pkill -RTMIN+12 waybar 2>/dev/null
+    exit 0
+  fi
+
+  # Multiple windows — show picker
+  local pick
+  pick=$(cut -d'|' -f2- < "$map" | walker -d -p "Restore:")
+
+  if [ -z "$pick" ]; then
+    exit 0
+  fi
+
+  local addr
+  addr=$(grep -F "|${pick}" "$map" | cut -d'|' -f1)
+
+  if [ -n "$addr" ]; then
+    hyprctl dispatch movetoworkspace +0,address:"$addr"
+    pkill -RTMIN+12 waybar 2>/dev/null
+  fi
+}
+
+case "${1:-}" in
+  --restore) restore ;;
+  *)         poll ;;
+esac
