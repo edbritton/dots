@@ -6,4 +6,4 @@
 # Example: Show the name of the theme that was just set.
 # notify-send "New theme" "Your new theme is $1"
 
-sed -i "s/^colorscheme=.*/colorscheme=$1/" "$HOME/.dotfiles/openscad/.config/OpenSCAD/OpenSCAD.conf"
+sed -i "s/^colorscheme=.*/colorscheme=$1/" "$HOME/.config/OpenSCAD/OpenSCAD.conf"
