@@ -1,0 +1,29 @@
+#!/bin/bash
+
+spaces=$(hyprctl clients -j | jq -r 'reduce .[] as $c ({}; .[$c.workspace.name] += [$c]) | with_entries(select(.key | startswith("special") | not))')
+
+count=$(jq -r 'length' <<< "$spaces")
+min=$(jq -r 'keys | min_by(tonumber)' <<< "$spaces")
+max=$(jq -r 'keys | max_by(tonumber)' <<< "$spaces")
+current=$(hyprctl activeworkspace -j | jq -r '.name')
+
+ttip="Space #$current"
+
+case "$current" in
+  1)
+    if [[ $count -eq 0 || $max -eq $current ]]; then
+      text=""
+    elif [[ $count -gt 0 && $min -ne $current ]]; then
+      text="+$(( $count ))"
+    else
+      text="+$(( $count - 1 ))"
+    fi
+    ttip="Spaces: $count\r First: $min\r  Last: $max"
+    ;;
+  2) text="Coding" ;;
+  3) text="Designing" ;;
+  4) text="Writing" ;;
+  *) text="#$current"; ttip="" ;;
+esac
+
+printf "{\"text\":\"$text\",\"tooltip\":\"$ttip\",\"class\":\"\"}"
