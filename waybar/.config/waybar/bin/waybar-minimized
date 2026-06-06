@@ -20,7 +20,7 @@ poll() {
       if (count == 0) {
         print "{\"text\":\"\",\"class\":\"empty\",\"tooltip\":\"No minimized windows\"}"
       } else {
-        printf "{\"text\":\"\uef3e %s\",\"class\":\"has-minimized\",\"tooltip\":\"%s\"}\n", count, titles
+        printf "{\"text\":\"\ueb7f %s\",\"class\":\"has-minimized\",\"tooltip\":\"%s\"}\n", count, titles
       }
     }
   '
@@ -83,7 +83,19 @@ restore() {
   fi
 }
 
+menuextra() {
+  num=$(hyprctl clients -j | jq -r '[.[] | select(.workspace.name == "special:minimize")] | length')
+  case "$num" in
+    0) num="" ;;
+    *) num="$num" ;;
+  esac
+
+  list=""
+
+  printf "{\"text\":\"\ueb7f $num\",\"tooltip\":\"$list\",\"class\":\"has-minimized\"}"
+}
+
 case "${1:-}" in
   --restore) restore ;;
-  *)         poll ;;
+  *)         menuextra ;;
 esac

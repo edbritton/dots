@@ -29,11 +29,6 @@ label.module,
   padding: 0 6px;
 }
 
-#custom-minimized, .modules-right > * {
-  margin: 0 7px;
-  padding: 0 4px;
-}
-
 #custom-minimized.empty {
   margin: 0;
   min-width: 0;
