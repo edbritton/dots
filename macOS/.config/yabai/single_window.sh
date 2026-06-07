@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-EXCLUDED_APPS='^(LuLu|Calculator|Software Update|Dictionary|VLC|System Preferences|System Settings|zoom.us|Photo Booth|Archive Utility|Python|LibreOffice|App Store|Steam|Alfred|Activity Monitor|Tips|FaceTime)$'
+EXCLUDED_APPS='^(LuLu|Calculator|Software Update|Dictionary|VLC|System Preferences|System Settings|zoom.us|Photo Booth|Archive Utility|Python|LibreOffice|App Store|Steam|Alfred|Activity Monitor|Tips|FaceTime|TestFlight|IINA)$'
 
 sleep 0.3
 
