@@ -13,6 +13,7 @@
   lol = log --oneline --abbrev-commit --graph --decorate
   #branches = !git-branches
   st = status -bs
+  cm = commit -m
 [column]
   ui = auto
 [branch]
