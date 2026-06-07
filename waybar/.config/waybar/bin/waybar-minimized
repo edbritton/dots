@@ -1,31 +1,5 @@
 #!/bin/bash
 
-poll() {
-  hyprctl clients | awk '
-    BEGIN { RS=""; FS="\n" }
-
-    /special:minimize/ {
-      count++
-      cls = ""; title = ""
-      for (i = 1; i <= NF; i++) {
-        if ($i ~ /^[[:space:]]*class:/)  cls   = substr($i, index($i, ":") + 2)
-        if ($i ~ /^[[:space:]]*title:/)  title = substr($i, index($i, ":") + 2)
-      }
-      if (sep)  titles = titles sep cls " - " title
-      else      titles = cls " - " title
-      sep = "\\n"
-    }
-
-    END {
-      if (count == 0) {
-        print "{\"text\":\"\",\"class\":\"empty\",\"tooltip\":\"No minimized windows\"}"
-      } else {
-        printf "{\"text\":\"\ueb7f %s\",\"class\":\"has-minimized\",\"tooltip\":\"%s\"}\n", count, titles
-      }
-    }
-  '
-}
-
 restore() {
   local map
   map=$(mktemp /tmp/walker-minimize.XXXXXX)
@@ -85,14 +59,17 @@ restore() {
 
 menuextra() {
   num=$(hyprctl clients -j | jq -r '[.[] | select(.workspace.name == "special:minimize")] | length')
+  winds=$(hyprctl clients -j | jq -r '.[] | select(.workspace.name == "special:minimize") | .class')
+
   case "$num" in
-    0) num="" ;;
-    *) num="$num" ;;
+    0) icon="" ;;
+    1) icon="\ueb7f" ;;
+    *) icon="\ueb23" ;;
   esac
 
   list=""
 
-  printf "{\"text\":\"\ueb7f $num\",\"tooltip\":\"$list\",\"class\":\"has-minimized\"}"
+  printf "{\"text\":\"$icon\",\"tooltip\":\"$list\",\"class\":\"has-minimized\"}"
 }
 
 case "${1:-}" in
