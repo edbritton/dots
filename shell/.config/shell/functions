@@ -2,6 +2,16 @@ rm() {
   command rm -v "$@" 2>&1 | nl -w2 -s". "
 }
 
+cleanup() {
+  if [ -x /opt/homebrew/bin/brew ]; then
+    brew cleanup --prune=all
+  fi
+
+  if [ -x /usr/bin/pacman ]; then
+    pacman -Qdtq && sudo pacman -Rns $(pacman -Qdtq) || echo "No orphaned dependancies to prune."
+  fi
+}
+
 # Use HandBrake to convert MKV to MP4
 # First draft for macOS based media soltuions, might use GUI instead
 mkv2mp4() {
