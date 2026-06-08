@@ -46,6 +46,7 @@ get_glyph() {
   :) echo " ▄▄ " ;;
   .) echo "   ▀" ;;
   ,) echo "   █" ;;
+  @) echo "▄▄▄▄▄▄ ██  █▀▀▀▀" ;;
   *) echo " 404" ;;
   esac
 }
