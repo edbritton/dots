@@ -35,7 +35,7 @@ if [ "$WINDOW_COUNT" -eq 1 ]; then
 
     APP_NAME=$(echo "$WINDOWS_IN_SPACE" | jq '[.[] | select(."is-visible" == true and ."can-resize" == true and ."is-native-fullscreen" == false)][0].app')
 
-    if [ "$APP_NAME" == \"Obsidian\" ]; then
+    if [[ "$APP_NAME" =~ ^\"(Obsidian|Snapmaker Orca)\"$ ]]; then
       yabai -m window "$ID" --grid 1:1:0:0:1:1
       skhd -k 'fn + ctrl - f'
     elif [[ "$APP_NAME" =~ ^\"(NotU1|NotYouTube)\"$ ]]; then
