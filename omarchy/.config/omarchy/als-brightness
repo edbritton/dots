@@ -1,0 +1,49 @@
+#!/bin/bash
+# als-brightness — ambient light sensor auto-brightness
+# Autostart: add to ~/.config/hypr/autostart.conf:
+#   exec-once = uwsm app -- ~/.config/omarchy/als-brightness
+
+ALS="/sys/bus/iio/devices/iio:device0/in_illuminance_raw"
+MAX_BRIGHTNESS=$(brightnessctl max)
+ALS_MAX=3355          # 3355 -- ALS reading that maps to full brightness (tune this)
+MIN_PCT=5             # minimum brightness %
+GAMMA=0.2             # power curve exponent (<1 = more sensitive at low end)
+INTERVAL=2            # poll seconds
+SMOOTH=1.0            # smoothing factor (0-1, higher = snappier)
+
+MIN_BRIGHTNESS=$(( MAX_BRIGHTNESS * MIN_PCT / 100 ))
+CURRENT=$(brightnessctl get)
+
+while true; do
+    RAW=$(cat "$ALS" 2>/dev/null || echo 0)
+    [ "$RAW" -gt "$ALS_MAX" ] && RAW=$ALS_MAX
+
+    #KBD=$(awk -v r="$RAW" -v am="$ALS_MAX" -v g="$GAMMA" \
+    #    'BEGIN { n = r / am; if (n > 1) n = 1; if (n < 0) n = 0; printf "%d", 100 - (n ^ g) * 100 }')
+
+    KBD=$(( RAW * 100 / ALS_MAX ))
+    KBD=$(( 100 - KBD ))
+    [ "$KBD" -gt 100 ] && KBD=100
+    [ "$KBD" -lt 0 ] && KBD=0
+
+    brightnessctl -d chromeos::kbd_backlight set "$KBD" > /dev/null
+
+    # Power law mapping: ALS_raw → brightness
+    TARGET=$(awk -v r="$RAW" -v am="$ALS_MAX" -v mn="$MIN_BRIGHTNESS" -v mx="$MAX_BRIGHTNESS" -v g="$GAMMA" \
+        'BEGIN { n = r / am; if (n > 1) n = 1; if (n < 0) n = 0; printf "%d", mn + (mx - mn) * (n ^ g) }')
+
+    #TARGET=$(( RAW * (MAX_BRIGHTNESS - MIN_BRIGHTNESS) / ALS_MAX + MIN_BRIGHTNESS ))
+    [ "$TARGET" -lt "$MIN_BRIGHTNESS" ] && TARGET=$MIN_BRIGHTNESS
+    [ "$TARGET" -gt "$MAX_BRIGHTNESS" ] && TARGET=$MAX_BRIGHTNESS
+
+    NEW=$(awk -v c="$CURRENT" -v t="$TARGET" -v s="$SMOOTH" \
+        'BEGIN { printf "%d", c + (t - c) * s }')
+
+    DIFF=$(( NEW - CURRENT ))
+    if [ "${DIFF#-}" -gt $(( MAX_BRIGHTNESS / 200 )) ]; then
+        brightnessctl set "$NEW" > /dev/null
+        CURRENT=$NEW
+    fi
+
+    sleep "$INTERVAL"
+done
