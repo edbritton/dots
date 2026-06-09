@@ -19,6 +19,11 @@ shift + lcmd - y        : open -a "YouTube"
 #trying to make Signal behave like Messages when opening in a Space
 #signal_id=$(yabai -m query --windows | jq -r 'map(select(.app == "Signal")).[0].id'); curr=$(yabai -m query --spaces --space | jq -r '.index'); open -a "Signal" && sleep 0.3 && yabai -m window --space $curr --focus
 
+lcmd - w [
+  "Snapmaker Orca" : skhd -k "cmd - q"
+  * ~
+]
+
 # Quicker lockscreen binding
 fn - l : open -a ScreenSaverEngine && skhd -k 'ctrl + cmd - q'; nowplaying-cli pause
 
