@@ -7,7 +7,7 @@ ALS="/sys/bus/iio/devices/iio:device0/in_illuminance_raw"
 MAX_BRIGHTNESS=$(brightnessctl max)
 ALS_MAX=3355          # 3355 -- ALS reading that maps to full brightness (tune this)
 MIN_PCT=0             # minimum brightness %
-GAMMA=0.2             # power curve exponent (<1 = more sensitive at low end)
+GAMMA=0.216           # power curve exponent (<1 = more sensitive at low end)
 INTERVAL=2            # poll seconds
 SMOOTH=1.0            # smoothing factor (0-1, higher = snappier)
 
@@ -15,6 +15,10 @@ MIN_BRIGHTNESS=$(( MAX_BRIGHTNESS * MIN_PCT / 100 ))
 CURRENT=$(brightnessctl get)
 
 while true; do
+    if awk -v g="$GAMMA" -v f="$(cat /tmp/als-gamma)" 'BEGIN { exit (g == f) }'; then
+      GAMMA=$(cat "/tmp/als-gamma" 2>/dev/null || echo "$GAMMA" > /tmp/als-gamma)
+    fi
+
     RAW=$(cat "$ALS" 2>/dev/null || echo 0)
     [ "$RAW" -gt "$ALS_MAX" ] && RAW=$ALS_MAX
 
