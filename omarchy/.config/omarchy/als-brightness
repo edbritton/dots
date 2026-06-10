@@ -6,7 +6,7 @@
 ALS="/sys/bus/iio/devices/iio:device0/in_illuminance_raw"
 MAX_BRIGHTNESS=$(brightnessctl max)
 ALS_MAX=3355          # 3355 -- ALS reading that maps to full brightness (tune this)
-MIN_PCT=5             # minimum brightness %
+MIN_PCT=0             # minimum brightness %
 GAMMA=0.2             # power curve exponent (<1 = more sensitive at low end)
 INTERVAL=2            # poll seconds
 SMOOTH=1.0            # smoothing factor (0-1, higher = snappier)
