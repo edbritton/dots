@@ -15,8 +15,10 @@ MIN_BRIGHTNESS=$(( MAX_BRIGHTNESS * MIN_PCT / 100 ))
 CURRENT=$(brightnessctl get)
 
 while true; do
-    if awk -v g="$GAMMA" -v f="$(cat /tmp/als-gamma)" 'BEGIN { exit (g == f) }'; then
-      GAMMA=$(cat "/tmp/als-gamma" 2>/dev/null || echo "$GAMMA" > /tmp/als-gamma)
+    if [ ! -f /tmp/als-gamma ]; then
+      echo "$GAMMA" > /tmp/als-gamma
+    elif awk -v g="$GAMMA" -v f="$(cat /tmp/als-gamma)" 'BEGIN { exit (g == f) }'; then
+      GAMMA=$(cat /tmp/als-gamma)
     fi
 
     RAW=$(cat "$ALS" 2>/dev/null || echo 0)
