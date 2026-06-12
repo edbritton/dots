@@ -24,6 +24,9 @@ lcmd - w [
   * ~
 ]
 
+# Cycle screen resolution
+lcmd - 0x2C : displayplacer mode:$(displayplacer list | sed -n '/current mode/{s/.*mode 4.*/5/;s/.*mode 5.*/4/;p;}')
+
 # Quicker lockscreen binding
 fn - l : open -a ScreenSaverEngine && skhd -k 'ctrl + cmd - q'; nowplaying-cli pause
 
@@ -143,11 +146,11 @@ ctrl + lalt - b : yabai -m window --toggle border
 
 ## Insertion (shift + ctrl + lalt - ...)
 # Set insertion point for focused container: shift + ctrl + lalt - {j, k, l, ö, s}
-shift + ctrl + lalt - j : yabai -m window --insert west
-shift + ctrl + lalt - k : yabai -m window --insert south
-shift + ctrl + lalt - l : yabai -m window --insert north
-shift + ctrl + lalt - 0x29 : yabai -m window --insert east
-shift + ctrl + lalt - s : yabai -m window --insert stack>
+meh - j : yabai -m window --insert west
+meh - k : yabai -m window --insert south
+meh - l : yabai -m window --insert north
+meh - 0x29 : yabai -m window --insert east
+meh - s : yabai -m window --insert stack>
 
 # New window in hor./ vert. splits for all applications with yabai
 lalt - s : yabai -m window --insert east;  skhd -k "cmd - n"
