@@ -81,7 +81,7 @@ show_status() {
             tooltip=$(get_tooltip)
             ;;
         "stopped")
-          text="$(iw dev wlan0 link | grep SSID | sed 's/\tSSID: //' | sed 's/\\xe2\\x80\\x99/\x27/')"
+          text="$(iw dev wlan0 link | sed -n 's/\tSSID: //p' | sed 's/Home//;s/\\xe2\\x80\\x99/\x27/')"
             alt="stopped"
             tooltip="Tailscale is turned off"
             ;;
