@@ -2,3 +2,8 @@
 default = true
 name = "DuckDuckGo"
 url = "https://duckduckgo.com/?q=%TERM%"
+
+[[entries]]
+default = false
+name = "Wikipedia"
+url = "https://en.wikipedia.org/wiki/Special:Search?search=%TERM%"

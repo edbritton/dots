@@ -20,16 +20,6 @@ default = [
   "websearch",
 ]
 
-[builtins.websearch]
-name = "websearch"
-icon = "applications-internet"
-placeholder = "Websearch"
-keep_selection = true
-
-[[builtins.websearch.entries]]
-name = "DuckDuckGo"
-url = "https://duckduckgo.com/?q=%TERM%"
-
 [[providers.prefixes]]
 prefix = "/"
 provider = "providerlist"
