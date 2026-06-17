@@ -1,4 +1,6 @@
-#!/bin/zsh
+#!/bin/sh
+
+export LC_ALL=C.UTF-8
 
 get_glyph() {
   case "$1" in
@@ -21,7 +23,7 @@ get_glyph() {
   q) echo "    █▀▀██  █▀▀▀█" ;;
   r) echo "   █▀▀█  ▀  " ;;
   s) echo "    █▀▀▀▀▀▀█▀▀▀▀" ;;
-  t) echo "▄  █▄▄█  ▀▀▀" ;;
+  t) echo "▄  █▀▀█  ▀▀▀" ;;
   u) echo "    █  ██  █ ▀▀▀" ;;
   v) echo "    █  ██  █ ▀▀ " ;;
   w) echo "       █  █  ██  █  █▀▀▀ ▀▀ " ;;
@@ -40,6 +42,7 @@ get_glyph() {
   0) echo "    █▀███▄ █▀▀▀▀" ;;
   # using section symbol to fix whitespace issue
   §) echo "" ;;
+  _) echo "            ▀▀▀▀" ;;
   /) echo "  ▄ ▄▀▄▀ ▀  " ;;
   -) echo "    ▀▀  " ;;
   \') echo "▄▀  " ;;
