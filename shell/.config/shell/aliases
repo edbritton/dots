@@ -12,9 +12,8 @@ if command -v fzf &>/dev/null; then
   alias ff='fzf --preview '\''bat --style=numbers --color=always {}'\'''
 fi
 
-if command -v opencode &>/dev/null; then
-  alias c='opencode'
-fi
+command -v bat &>/dev/null || alias bat='cat'
+command -v opencode &>/dev/null && alias c='opencode'
 
 if [[ "$(uname)" == "Darwin" ]]; then
   alias docker='container'
@@ -34,9 +33,12 @@ alias gcm='git commit -m'
 if command -v eza &>/dev/null; then
   alias ls='eza -lh --group-directories-first --icons=auto'
   alias lt='eza --tree --level=2 --long --icons --git'
-  alias lta='lt -A'
+else
+  alias ls='ls -l --color=always'
+  alias lt='ls'
 fi
 
+alias lta='lt -A'
 alias lsa='ls -A'
 
 command -v fd &>/dev/null && alias today='fd --changed-after 1day'
