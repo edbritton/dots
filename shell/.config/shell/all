@@ -3,3 +3,15 @@
 . ~/.config/shell/env
 . ~/.config/shell/tries
 . ~/.config/shell/functions
+
+
+# Fix scp remote completion for bash >= 5.3
+# The system completion uses triple-backslash escaping for special chars in
+# remote paths, but bash 5.3's compgen -V doesn't strip one level of escaping
+# like older bash did, so triple backslashes land literally on the command line.
+# Pass -l to emit single-backslash escaping instead.
+if ((BASH_VERSINFO[0] > 5 || BASH_VERSINFO[0] == 5 && BASH_VERSINFO[1] >= 3)) \
+   && declare -F _comp_cmd_scp &>/dev/null; then
+  eval "$(declare -f _comp_cmd_scp \
+    | sed 's/_comp_xfunc_scp_compgen_remote_files[;]*$/_comp_xfunc_scp_compgen_remote_files -l/')"
+fi
