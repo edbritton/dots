@@ -1,9 +1,0 @@
-/* relative from ~/.config */
-@import "../../../../.local/share/omarchy/default/walker/themes/omarchy-default/style.css";
-
-/* relative from ~/.dotfiles */
-@import "../../../../../../.local/share/omarchy/default/walker/themes/omarchy-default/style.css";
-
-.box-wrapper {
-  border-radius: 12px;
-}
