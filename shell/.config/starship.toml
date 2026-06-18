@@ -13,10 +13,14 @@ repo_root_style = "bold cyan"
 repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
 
 [hostname]
-aliases = { "Eds-MacBook" = "MBN" }
 ssh_only = true
 format = '[SSH](bold dimmed cyan) → [$hostname](bold yellow) '
 disabled = false
+
+[hostname.aliases]
+"Eds-MacBook" = "MBN"
+"Eds-Mac-mini" = "MM"
+
 
 [git_branch]
 format = "[$branch]($style) "
