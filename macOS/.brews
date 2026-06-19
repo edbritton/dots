@@ -1,3 +1,18 @@
+# One brewfile, many machines
+def laptop
+  system("pmset -g batt 2>/dev/null | grep -q 'Battery'")
+end
+def min_ram(gb = 8)
+  ram = `system_profiler SPMemoryDataType | sed -n 's/.*Memory: \([0-9]*\) GB/\1/p'`.to_i
+  ram >= gb
+end
+def model(name)
+  `system_profiler SPHardwareDataType 2>/dev/null | awk -F': ' '/Model Name:/ {print $2}'`.strip =~ name
+end
+def server
+  !laptop && !model("iMac")
+end
+
 # Basics
 brew "mas"
 brew "stow"
@@ -8,56 +23,62 @@ brew "eza"                                 # better ls
 brew "fd"                                  # better find
 brew "fdupes"                              # duplicate finder
 brew "fzf"                                 # fuzzy find
-brew "leaf-md"                             # markdown viewer tui
 brew "ripgrep"                             # better grep
 brew "starship"
-cask "font-fira-code-nerd-font"
+cask "font-fira-code-nerd-font" unless server
 
 # Self-hosting and cross-platform
-#brew "app" if `system_profiler -json SPMemoryDataType 2>/dev/null | jq -r '.[].[].SPMemoryDataType | split(" ")[0] | tonumber'`.to_i > 16
 #brew "radiosilence/watchwoman/watchwoman" # intented for automation on folder changes
 #cask "iina"                               # (this && Jellyfin) || Infuse
 #cask "syncthing-app"
 #mas "Infuse", id: 1136220934              # this || (iina && Jellyfin)
 
 # Media machine
+if min_ram(32) && model("Mac mini")
 #brew "handbrake"                          # for ARM -- might be conainterised
+#cask "jellyfin"
+end
 
 # VMs and containers
-brew "container"
+brew "container" if server
 #cask "ghostvm"
 #cask "virtualbuddy"
 
 # Window Management
-brew "asmvik/formulae/skhd"
-brew "asmvik/formulae/yabai"               # requires sudo manipulation for all features
-brew "dimentium/autoraise/autoraise"       # used as fallback when yabai is off
-brew "nowplaying-cli"                      # needed for one skhd keybind
-brew "displayplacer"                       # needed for one skhd keybind
-cask "middleclick"
+unless server
+  brew "asmvik/formulae/skhd"
+  brew "asmvik/formulae/yabai"             # requires sudo manipulation for all features
+  brew "dimentium/autoraise/autoraise"     # used as fallback when yabai is off
+  brew "nowplaying-cli"                    # needed for one skhd keybind
+  brew "displayplacer"                     # needed for one skhd keybind
+  cask "middleclick"
+end
 
 # Apps
+brew "neovim"
 #brew "opencode"                           # Coding
-cask "obsidian"                            # Writing
+cask "obsidian" unless server              # Writing
 #cask "openscad@snapshot"                  # Designing
 cask "signal"
 #mas "Reeder", id: 6475002485
 
 # Utilities
 #brew "pairpods"                           # Dual bluetooth output
-#mas "JoyKeyMapper", id: 1511416593        # replaced with manaporkun/JoyMapKi
+#mas "JoyKeyMapper", id: 1511416593        # replaced with manaporkun/JoyMapKit
 #mas "TrashMe", id: 443126292
 
 # Safari extensions
-mas "Baking Soda", id: 1601151613
-mas "Hush", id: 1544743900
-#mas "Rerouter", id: 1589151155            # seems out of the App Store
-#mas "Userscripts", id: 1463298887         # replaced by TestFlight app
-mas "Vinegar", id: 1591303229
-mas "uBlock Origin Lite", id: 6745342698
+unless server
+  mas "Baking Soda", id: 1601151613
+  mas "Hush", id: 1544743900
+  #mas "Rerouter", id: 1589151155          # seems out of the App Store
+  #mas "Userscripts", id: 1463298887       # replaced by TestFlight app
+  mas "Vinegar", id: 1591303229
+  mas "uBlock Origin Lite", id: 6745342698
+end
 
 # Sysadmin
-mas "Apple Configurator", id: 1037126344
+mas "Apple Configurator", id: 1037126344 unless laptop
 mas "Remote Desktop", id: 409907375
-mas "TestFlight", id: 899247664
-cask "tailscale-app" if system("pmset -g batt 2>/dev/null | grep -q 'Battery'")
+mas "TestFlight", id: 899247664 unless server
+cask "tailscale-app" if laptop
