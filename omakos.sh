@@ -10,17 +10,37 @@ set -eu
 # https://herrbischoff.com/code/me/awesome-macos-command-line
 
 # Enable TouchID for sudo auth -- required
-# This is hard because of macOS privileges being crazy
+# This is hard because of macOS privileges be crazy
 # Probably need to do this manually
-if [ ! -f /etc/pam.d/sudo_local ]; then
-  echo "Enable TouchID for sudo authentication"
+
+while true; do
+  read -p "Do you have TouchID on this machine? [y/N] " -n 1 -r
   echo
-  echo "sudo cp /etc/pam.d/sudo_local{.template,}"
-  echo "sudo echo 'auth       sufficient     pam_tid.so' >> /etc/pam.d/sudo_local"
-  sudo cp /etc/pam.d/sudo_local{.template,}
-  sudo echo 'auth       sufficient     pam_tid.so' >>/etc/pam.d/sudo_local
-  exit 1
-fi
+  case "$REPLY" in
+  [Yy]*)
+    if [ ! -f /etc/pam.d/sudo_local ]; then
+      if sudo cp /etc/pam.d/sudo_local{.template,} 2>/dev/null && echo 'auth       sufficient     pam_tid.so' | sudo tee -a /etc/pam.d/sudo_local >/dev/null 2>&1; then
+        echo "TouchID for sudo enabled"
+      else
+        echo "Enable TouchID for sudo authentication"
+        echo
+        echo "sudo cp /etc/pam.d/sudo_local{.template,}"
+        echo "echo 'auth       sufficient     pam_tid.so' | sudo tee -a /etc/pam.d/sudo_local"
+
+        while true; do
+          read -p "Continue without TouchID for sudo? [y/N] " -n 1 -r
+          echo
+          case "$REPLY" in
+          [Yy]*) break 2 ;;
+          *) exit 1 ;;
+          esac
+        done
+      fi
+    fi
+    ;;
+  *) break ;;
+  esac
+done
 
 ### Install Homebrew, dotfiles, and packages ###
 
@@ -35,10 +55,12 @@ while true; do
       #echo >> $HOME/.zprofile
       #echo 'eval "$(/opt/homebrew/bin/brew shellenv zsh)"' >> $HOME/.zprofile
       eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+      mv $HOME/.zprofile{,.bak}
     fi
 
     echo "Clone and stow the dots"
     brew install stow
+    mv $HOME/.dots{,.bak} 2>/dev/null || true
     git clone https://github.com/edbritton/dots $HOME/.dots
     stow macOS shell git -d $HOME/.dots -t $HOME
     #defaults import com.apple.symbolichotkeys symbolichotkeys.plist && mv symbolichotkeys.plist .symbolichotkeys.plist
@@ -47,17 +69,10 @@ while true; do
 
     if command -v nvim &>/dev/null; then
       echo "Initialise LazyVim and install Neovim dots"
-      mv ~/.config/nvim{,.bak}
+      mv ~/.config/nvim{,.bak} 2>/dev/null || true
       git clone https://github.com/LazyVim/starter ~/.config/nvim
       rm -rf ~/.config/nvim/.git
       stow nvim -d $HOME/.dots -t $HOME
-    fi
-
-    if [ -f ~/Library/Preferences/com.amethyst.Amethyst.plist ]; then
-      defaults write "com.amethyst.Amethyst" "hide-menu-bar-icon" -bool true
-      defaults write "com.amethyst.Amethyst" "mouse-follows-focus" -bool true
-      defaults write "com.amethyst.Amethyst" "window-margin" -bool true
-      defaults write "com.amethyst.Amethyst" "window-margin-size" -int 8
     fi
 
     #curl -sL https://github.com/manaporkun/JoyMapKit/releases/latest/download/JoyMapKit-0.2.0.dmg -o /tmp/JoyMapKit.dmg && hdiutil attach /tmp/JoyMapKit.dmg -quiet && cp -R "/Volumes/JoyMapKit/JoyMapKit.app" /Applications/ && hdiutil detach "/Volumes/JoyMapKit" -quiet && rm /tmp/JoyMapKit.dmg # && open /Applications/JoyMapKit.app
@@ -75,7 +90,7 @@ while true; do
   read -p "Setup macOS with Omakos system preferences? [Y/n] " -n 1 -r
   echo
   case "$REPLY" in
-  [Yy]* | "") ;;
+  [Yy]* | "") break ;;
   [Nn]*)
     exit 1
     break
@@ -85,7 +100,8 @@ while true; do
 done
 
 # Reduce number of menu icons in Tahoe
-defaults write -g "NSMenuEnableActionImages" -bool false
+# only a problem in Tahoe
+# defaults write -g "NSMenuEnableActionImages" -bool false
 
 # Set date format
 defaults write -g "AppleICUDateFormatStrings" '{1="y.MM.dd";}'
@@ -185,8 +201,8 @@ defaults write "com.apple.dock" "autohide" -bool true # dock
 #defaults write -g "_HIHideMenuBar" -bool true # menu bar
 
 # Enable SSH
-# (depreciated) sudo systemsetup -setremotelogin on
-sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist
+sudo systemsetup -setremotelogin on
+#sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist
 
 # Enable VNC
 #sudo defaults write /var/db/launchd.db/com.apple.launchd/overrides.plist com.apple.screensharing -dict Disabled -bool false
@@ -196,7 +212,7 @@ sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist
 killall Dock 2>/dev/null || true
 killall ControlCenter 2>/dev/null || true
 killall Finder 2>/dev/null || true
-killall SytemUIServer 2>/dev/null || true
+killall SystemUIServer 2>/dev/null || true
 
 echo
 echo "Remaining settings to manually implement:"
