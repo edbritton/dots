@@ -34,7 +34,7 @@ if command -v eza &>/dev/null; then
   alias ls='eza -lh --group-directories-first --icons=auto'
   alias lt='eza --tree --level=2 --long --icons --git'
 else
-  alias ls='ls -l --color=always'
+  alias ls='ls -lh --color=always'
   alias lt='ls'
 fi
 
