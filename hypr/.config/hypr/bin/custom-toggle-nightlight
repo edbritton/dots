@@ -22,10 +22,12 @@ restart_nightlighted_waybar() {
 }
 
 if [[ $CURRENT_TEMP == $OFF_TEMP ]]; then
+  omarchy-theme-bg-set ~/.config/omarchy/themes/dracula/backgrounds/dracula-mnt-282a36.png
   hyprctl hyprsunset temperature $ON_TEMP
   notify-send -u low "  Nightlight screen temperature"
   restart_nightlighted_waybar
 else
+  omarchy-theme-bg-set ~/.config/omarchy/backgrounds/dracula/dracula-mnt-bd93f9.png
   hyprctl hyprsunset temperature $OFF_TEMP
   notify-send -u low "   Daylight screen temperature"
   restart_nightlighted_waybar
