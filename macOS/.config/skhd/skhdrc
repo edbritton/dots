@@ -25,7 +25,7 @@ lcmd - w [
 ]
 
 # Cycle screen resolution
-lcmd - 0x2C : displayplacer mode:$(displayplacer list | sed -n '/current mode/{s/.*mode 4.*/5/;s/.*mode 5.*/4/;p;}')
+lcmd - 0x2C : displayplacer mode:$(displayplacer list | sed -n '/current mode/{s/.*mode 4.*/5/;s/.*mode 5.*/4/;p;}') && sh ~/.config/yabai/single_window.sh --force
 
 # Quicker lockscreen binding
 fn - l : open -a ScreenSaverEngine && skhd -k 'ctrl + cmd - q'; nowplaying-cli pause

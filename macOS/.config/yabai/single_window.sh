@@ -22,7 +22,11 @@ WINDOW_COUNT=$(echo "$WINDOWS_IN_SPACE" | jq --arg excl "$EXCLUDED_APPS" '[.[] |
 #esac
 
 if [ "$WINDOW_COUNT" -eq 1 ]; then
-  ID=$(echo "$WINDOWS_IN_SPACE" | jq -r --arg excl "$EXCLUDED_APPS" '[.[] | select(."is-visible" == true and ."is-floating" == false and ."can-resize" == true and ."is-native-fullscreen" == false and (.app | test($excl) | not) )][0].id')
+  if [ $# -eq 1 ] && [ $1 == "--force" ]; then
+    ID=$(echo "$WINDOWS_IN_SPACE" | jq -r --arg excl "$EXCLUDED_APPS" '[.[] | select(."is-visible" == true and ."can-resize" == true and ."is-native-fullscreen" == false and (.app | test($excl) | not) )][0].id')
+  else
+    ID=$(echo "$WINDOWS_IN_SPACE" | jq -r --arg excl "$EXCLUDED_APPS" '[.[] | select(."is-visible" == true and ."is-floating" == false and ."can-resize" == true and ."is-native-fullscreen" == false and (.app | test($excl) | not) )][0].id')
+  fi
   if [ "$ID" ] && [ "$ID" != 'null' ]; then
     yabai -m window $ID --toggle float
     sleep 0.3
