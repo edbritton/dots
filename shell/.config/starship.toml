@@ -14,7 +14,7 @@ repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($r
 
 [hostname]
 ssh_only = true
-format = '[SSH](bold dimmed cyan) → [$hostname](bold yellow) '
+format = '[$hostname](bold yellow):'
 disabled = false
 
 [hostname.aliases]
