@@ -14,7 +14,7 @@ console.log("Window PIDs:", [...windowPIDs].join(", "));
 
 var SE = Application("System Events");
 var procs = SE.processes.whose({backgroundOnly: false});
-var exclude = new Set(["Finder","Dock","SystemUIServer","ControlCenter","Signal","Spotlight","Messages","Mail"]);
+var exclude = new Set(["Finder","Dock","SystemUIServer","ControlCenter","Signal","Spotlight","Messages","Mail","Music"]);
 for (var i = 0; i < procs.length; i++) {
   var p = procs[i];
 
