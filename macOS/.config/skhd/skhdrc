@@ -24,11 +24,17 @@ lcmd - w [
   * ~
 ]
 
+lcmd - r [
+  "YouTube" : skhd -k "alt + cmd -r"
+  * ~
+]
+
 # Cycle screen resolution
 lcmd - 0x2C : displayplacer mode:$(displayplacer list | sed -n '/current mode/{s/.*mode 4.*/5/;s/.*mode 5.*/4/;p;}') && sh ~/.config/yabai/single_window.sh --force
 
 # Quicker lockscreen binding
-fn - l : open -a ScreenSaverEngine && skhd -k 'ctrl + cmd - q'; nowplaying-cli pause
+#fn - l : open -a ScreenSaverEngine && skhd -k 'ctrl + cmd - q'; nowplaying-cli pause
+fn - l : skhd -k 'ctrl + cmd - q'; nowplaying-cli pause
 
 # Turn yabai on and off
 fn - y : if pgrep -x yabai > /dev/null; then yabai --stop-service && brew services start autoraise; else yabai --start-service && brew services stop autoraise; fi
@@ -39,11 +45,12 @@ fn - y : if pgrep -x yabai > /dev/null; then yabai --stop-service && brew servic
 #lalt - 2 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[2] ]] && yabai -m space --focus $SPACES[2]
 #lalt - 3 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[3] ]] && yabai -m space --focus $SPACES[3]
 #lalt - 4 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[4] ]] && yabai -m space --focus $SPACES[4]
-ctrl - 5 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[5] ]] && yabai -m space --focus $SPACES[5]
-ctrl - 6 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[6] ]] && yabai -m space --focus $SPACES[6]
-ctrl - 7 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[7] ]] && yabai -m space --focus $SPACES[7]
-ctrl - 8 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[8] ]] && yabai -m space --focus $SPACES[8]
-ctrl - 9 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[9] ]] && yabai -m space --focus $SPACES[9]
+#ctrl - 5 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[5] ]] && yabai -m space --focus $SPACES[5]
+ctrl - 5 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[5] ]] && if [ $(yabai -m query --spaces --space | jq -r '.index') -eq 4 ]; then skhd -k 'ctrl - right'; else yabai -m space --focus $SPACES[5]; fi
+ctrl - 6 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[6] ]] && if [ $(yabai -m query --spaces --space | jq -r '.index') -eq 5 ]; then skhd -k 'ctrl - right'; else yabai -m space --focus $SPACES[6]; fi
+ctrl - 7 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[7] ]] && if [ $(yabai -m query --spaces --space | jq -r '.index') -eq 6 ]; then skhd -k 'ctrl - right'; else yabai -m space --focus $SPACES[7]; fi
+ctrl - 8 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[8] ]] && if [ $(yabai -m query --spaces --space | jq -r '.index') -eq 7 ]; then skhd -k 'ctrl - right'; else yabai -m space --focus $SPACES[8]; fi
+ctrl - 9 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[9] ]] && if [ $(yabai -m query --spaces --space | jq -r '.index') -eq 8 ]; then skhd -k 'ctrl - right'; else yabai -m space --focus $SPACES[9]; fi
 
 # Focus on <ARROW> window (Omarchy: SUPER + <ARROW>)
 lcmd - left  : yabai -m window --focus west  || yabai -m display --focus west
