@@ -28,8 +28,8 @@ if [ "$WINDOW_COUNT" -eq 1 ]; then
     ID=$(echo "$WINDOWS_IN_SPACE" | jq -r --arg excl "$EXCLUDED_APPS" '[.[] | select(."is-visible" == true and ."is-floating" == false and ."can-resize" == true and ."is-native-fullscreen" == false and (.app | test($excl) | not) )][0].id')
   fi
   if [ "$ID" ] && [ "$ID" != 'null' ]; then
-    yabai -m window $ID --toggle float
-    sleep 0.3
+    #yabai -m window $ID --toggle float
+    #sleep 0.3
     while [ $(yabai -m query --windows --window "$ID" | jq -r '.["is-floating"]') != "true" ]; do
       yabai -m window "$ID" --toggle float
       sleep 0.3
