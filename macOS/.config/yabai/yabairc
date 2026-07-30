@@ -45,7 +45,7 @@ yabai -m config \ #external_bar all:40:0 \
 # Exclude problematic apps from being managed:
 yabai -m rule --add app="^(LuLu|Calculator|Software Update|Dictionary|VLC|System Preferences|System Settings|zoom.us|Photo Booth|Archive Utility|Python|LibreOffice|App Store|Steam|Alfred|Activity Monitor|Tips|FaceTime|TestFlight|IINA)$" manage=off
 yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
-yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension|Feature Flag)s|AutoFill|Se(arch|curity)|Privacy|Advanced|Developer)$" manage=off
+yabai -m rule --add label="Safari" app="^(Safari|YouTube)$" title="^(General|(Tab|Password|Website|Extension|Feature Flag)s|AutoFill|Se(arch|curity)|Privacy|Advanced|Developer)$" manage=off
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
 yabai -m rule --add label="Select file to save to" app="^Inkscape$" title="Select file to save to" manage=off
 yabai -m rule --add label="Obsidian splash screen" app="^(Obsidian)$" title="^(Obsidian)$" manage=off
