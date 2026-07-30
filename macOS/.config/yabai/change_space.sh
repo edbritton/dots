@@ -27,17 +27,18 @@ if [ $# -eq 0 ]; then
 fi
 
 CURRENT_SPACE=$(yabai -m query --spaces --space | jq -r '.index')
+CURRENT_DISPLAY=$(yabai -m query --spaces --space | jq -r '.display')
 
 # Find the next and previous spaces which:
 #   - are not currently visible
 #   - have at least one window
 
 #target=$(yabai -m query --spaces | jq -r 'map(select(."is-visible" == false and (.windows | length > 0))) | sort_by(.index) | .[0].index')
-recent=$(yabai -m query --windows | jq -r --arg curr "$CURRENT_SPACE" 'map(select(."is-minimized" == false and .space != ($curr | tonumber) and ( .frame.x == 0 or (.title | length > 0) ))) | (.[0].space // 1)')
-first=$(yabai -m query --windows | jq -r --arg curr "$CURRENT_SPACE" 'map(select(."is-minimized" == false and ( .frame.x == 0 or (.title | length > 0) ))) | sort_by(.space) | .[].space')
-next=$(yabai -m query --windows | jq -r --arg curr "$CURRENT_SPACE" 'map(select(."is-minimized" == false and ( .frame.x == 0 or (.title | length > 0) ) and .space > ($curr | tonumber))) | sort_by(.space) | .[].space')
-prev=$(yabai -m query --windows | jq -r --arg curr "$CURRENT_SPACE" 'map(select(."is-minimized" == false and ( .frame.x == 0 or (.title | length > 0) ) and .space < ($curr | tonumber))) | sort_by(.space) | reverse | .[].space')
-last=$(yabai -m query --windows | jq -r --arg curr "$CURRENT_SPACE" 'map(select(."is-minimized" == false and ( .frame.x == 0 or (.title | length > 0) ))) | sort_by(.space) | reverse | .[].space')
+recent=$(yabai -m query --windows | jq -r --arg curr "$CURRENT_SPACE" --arg disp "$CURRENT_DISPLAY" 'map(select(."is-minimized" == false and .display == ($disp | tonumber) and .space != ($curr | tonumber) and ( .frame.x == 0 or (.title | length > 0) ))) | (.[0].space // 1)')
+first=$(yabai -m query --windows | jq -r --arg disp "$CURRENT_DISPLAY" 'map(select(."is-minimized" == false and .display == ($disp | tonumber) and ( .frame.x == 0 or (.title | length > 0) ))) | sort_by(.space) | .[].space')
+next=$(yabai -m query --windows | jq -r --arg curr "$CURRENT_SPACE" --arg disp "$CURRENT_DISPLAY" 'map(select(."is-minimized" == false and .display == ($disp | tonumber) and ( .frame.x == 0 or (.title | length > 0) ) and .space > ($curr | tonumber))) | sort_by(.space) | .[].space')
+prev=$(yabai -m query --windows | jq -r --arg curr "$CURRENT_SPACE" --arg disp "$CURRENT_DISPLAY" 'map(select(."is-minimized" == false and .display == ($disp | tonumber) and ( .frame.x == 0 or (.title | length > 0) ) and .space < ($curr | tonumber))) | sort_by(.space) | reverse | .[].space')
+last=$(yabai -m query --windows | jq -r --arg disp "$CURRENT_DISPLAY" 'map(select(."is-minimized" == false and .display == ($disp | tonumber) and ( .frame.x == 0 or (.title | length > 0) ))) | sort_by(.space) | reverse | .[].space')
 
 if [[ ! $next || $next == null ]]; then
   next=$first
