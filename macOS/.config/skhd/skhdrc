@@ -111,7 +111,7 @@ shift + lalt - right : yabai -m space --mirror y-axis
 # Stacks are groups: SUPER/ALT/TAB is cycle groups on Omarchy
 
 # Toggle window grouping (Omarchy: SUPER + G)
-#lalt - g : yabai -m window --stack recent || yabai -m window --toggle float
+lalt - g : yabai -m window --stack recent || yabai -m window --toggle float
 
 # Move window to group on <ARROW> (Omarchy: SUPER ALT + <ARROW>)
 #lalt + lcmd - left  : yabai -m window  west --stack $(yabai -m query --windows --window | jq -r '.id')
@@ -121,9 +121,11 @@ shift + lalt - right : yabai -m space --mirror y-axis
 
 # Next window in stack (Omarchy: SUPER ALT + TAB)
 #cmd + lalt - tab : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+fn - tab : yabai -m window --focus stack.next || yabai -m window --focus stack.first
 
 # Previous window in stack (Omarchy: SUPER SHIFT ALT + TAB)
 #shift + lcmd + lalt - tab : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+shift + fn - tab : yabai -m window --focus stack.prev || yabai -m window --focus stack.last
 
 # Cycle between tiled windows
 lalt - tab : yabai -m window --focus next || yabai -m window --focus first
