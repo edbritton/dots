@@ -10,7 +10,10 @@ lcmd - return [
   "Terminal" : skhd -k "cmd - n"
 ]
 shift + lcmd - return   : shortcuts run 'Open browser' #osascript -e 'tell application "Safari" to make new document'
-shift + lcmd - f        : open -a "Finder"
+shift + lcmd - f [
+  * : open -a "Finder"
+  "Final Cut Pro" ~
+]
 shift + lcmd - g        : open -a "Messages"
 shift + lcmd - o        : open "obsidian://open?vault=standup"
 shift + lalt + lcmd - o : open "obsidian://open?vault=screenplays"

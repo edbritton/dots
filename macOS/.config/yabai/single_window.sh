@@ -39,9 +39,9 @@ if [ "$WINDOW_COUNT" -eq 1 ]; then
 
     APP_NAME=$(echo "$WINDOWS_IN_SPACE" | jq '[.[] | select(."is-visible" == true and ."can-resize" == true and ."is-native-fullscreen" == false)][0].app')
 
-    if [[ "$APP_NAME" =~ ^\"(Obsidian|Snapmaker Orca)\"$ ]]; then
+    if [[ "$APP_NAME" =~ ^\"(Final Cut Pro|Obsidian|Snapmaker Orca)\"$ ]]; then
       yabai -m window "$ID" --grid 1:1:0:0:1:1
-      skhd -k 'fn + ctrl - f'
+      if [[ "$APP_NAME" != "Final Cut Pro" ]]; then skhd -k 'fn + ctrl - f'; fi
     elif [[ "$APP_NAME" =~ ^\"(NotU1|NotYouTube)\"$ ]]; then
       yabai -m window "$ID" --grid 20:20:3:0:14:20
       skhd -k 'fn + ctrl - c'

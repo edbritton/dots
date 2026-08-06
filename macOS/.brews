@@ -62,6 +62,7 @@ cask "obsidian" unless server              # Writing
 #cask "openscad@snapshot"                  # Designing
 cask "signal"
 #mas "Reeder", id: 6475002485
+#mas "Final Cut Pro", id: 424389933
 
 # Utilities
 #brew "pairpods"                           # Dual bluetooth output
