@@ -1,0 +1,66 @@
+#!/bin/bash
+
+PRINTER_NAME="${1:-3DP} "
+MOONRAKER_URL="${2:-http://localhost:7125}"
+
+data=$(curl -sf "$MOONRAKER_URL/printer/objects/query?print_stats&extruder&heater_bed" 2>/dev/null)
+
+if [[ -z "$data" ]]; then
+  echo '{"text":"' $PRINTER_NAME '","class":"offline","tooltip":"Moonraker unreachable","alt":"offline"}'
+  exit 0
+fi
+
+state=$(echo "$data" | jq -r '.result.status.print_stats.state // "unknown"')
+message=$(echo "$data" | jq -r '.result.status.print_stats.message // "unknown"')
+filename=$(echo "$data" | jq -r '.result.status.print_stats.filename // ""')
+progress=$(echo "$data" | jq -r '.result.status.print_stats.print_duration // 0')
+total=$(echo "$data" | jq -r '.result.status.print_stats.total_duration // 0')
+bed=$(echo "$data" | jq -r '.result.status.heater_bed.temperature // 0' | xargs printf "%.0f")
+ext=$(echo "$data" | jq -r '.result.status.extruder.temperature // 0' | xargs printf "%.0f")
+bed_target=$(echo "$data" | jq -r '.result.status.heater_bed.target // 0' | xargs printf "%.0f")
+ext_target=$(echo "$data" | jq -r '.result.status.extruder.target // 0' | xargs printf "%.0f")
+
+pct=$(echo "$data" | jq -r '
+  if .result.status.print_stats.total_duration > 0 then
+    (.result.status.print_stats.print_duration * 100 / .result.status.print_stats.total_duration | floor)
+  else
+    0
+  end
+')
+
+case "$state" in
+  printing)
+    text="󰐪 ${pct}%"
+    cls="printing"
+    tip="${message}\n${filename:-Unknown} · ${pct}%\nBed: ${bed}°C  Ext: ${ext}°C"
+    ;;
+  paused)
+    text=" ${pct}%"
+    cls="paused"
+    tip="${message}\nPaused at ${pct}% · ${filename:-Unknown}\nBed: ${bed}°C  Ext: ${ext}°C"
+    ;;
+  complete)
+    text="󰐖 ${message}"
+    cls="complete"
+    tip="${message}\n${filename:-Unknown} — complete\nBed: ${bed}°C  Ext: ${ext}°C"
+    ;;
+  error)
+    text="󰀨"
+    cls="error"
+    tip="${message}\nError: ${filename:-Unknown}"
+    ;;
+  standby|cancelled)
+    text=""
+    cls="idle"
+    tip="${message}\nIdle\nBed: ${bed}°C  Ext: ${ext}°C"
+    ;;
+  *)
+    text="${PRINTER_NAME}"
+    cls="idle"
+    tip="${message}\nState: ${state}\nBed: ${bed}°C  Ext: ${ext}°C"
+    ;;
+esac
+
+cat << EOF
+{"text":"$text","class":"$cls","alt":"$state","tooltip":"$tip"}
+EOF
