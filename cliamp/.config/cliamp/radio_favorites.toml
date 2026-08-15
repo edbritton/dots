@@ -1,0 +1,25 @@
+[[station]]
+name = "PBS FM - Melbourne - 106.7 FM (AAC+)"
+url = "http://playerservices.streamtheworld.com/api/livestream-redirect/3PBS_FMAAC.aac"
+country = "Australia"
+bitrate = 128
+codec = "AAC+"
+tags = "australian music,community radio,independent"
+homepage = "https://www.pbsfm.org.au/"
+
+[[station]]
+name = "ABC Triple J Unearthed (AAC)"
+url = "http://live-radio01.mediahubaustralia.com/UNEW/aac/"
+country = "Australia"
+bitrate = 56
+codec = "AAC+"
+tags = "abc,indie,public radio"
+homepage = "https://www.triplejunearthed.com/"
+
+[[station]]
+name = "ABC Triple J (AAC)"
+url = "http://live-radio01.mediahubaustralia.com/2TJW/aac/"
+country = "Australia"
+bitrate = 56
+codec = "AAC+"
+homepage = "https://www.abc.net.au/triplej"

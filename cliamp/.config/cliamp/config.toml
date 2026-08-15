@@ -1,0 +1,7 @@
+theme = "neon-blade-runner"
+
+visualizer = "Bricks"
+eq_preset = "Flat"
+eq = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+repeat = "Off"
+speed = 1.00

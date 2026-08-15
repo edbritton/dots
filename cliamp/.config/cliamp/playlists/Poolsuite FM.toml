@@ -1,0 +1,41 @@
+# ~/.config/cliamp/playlists/PoolsuiteFM.toml
+
+[[track]]
+path = "https://soundcloud.com/poolsuite/sets/tokyo-disco"
+title = "Tokyo Disco"
+artist = "Poolsuite FM"
+
+[[track]]
+path = "https://soundcloud.com/poolsuite/sets/friday-nite-heat"
+title = "Friday Nite Heat"
+artist = "Poolsuite FM"
+
+[[track]]
+path = "https://soundcloud.com/poolsuite/sets/hangover-club"
+title = "Hangover Club"
+artist = "Poolsuite FM"
+
+[[track]]
+path = "https://soundcloud.com/poolsuite/sets/indie-summer"
+title = "Indie Summer"
+artist = "Poolsuite FM"
+
+[[track]]
+path = "https://soundcloud.com/poolsuite/sets/poolsuite-mixtapes"
+title = "Mixtapes"
+artist = "Poolsuite FM"
+
+[[track]]
+path = "https://soundcloud.com/poolsuite/sets/balearic-sundown"
+title = "Balearic Sundown"
+artist = "Poolsuite FM"
+
+[[track]]
+path = "https://soundcloud.com/poolsuite/sets/poolsuite-fm-official-playlist"
+title = "Offical Playlist I"
+artist = "Poolsuite FM"
+
+[[track]]
+path = "https://soundcloud.com/poolsuite/sets/poolsuite-fm-official-playlist-two"
+title = "Offical Playlist II"
+artist = "Poolsuite FM"

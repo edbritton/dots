@@ -1,0 +1,29 @@
+# ~/.config/cliamp/playlists/podcasts.toml
+
+[[track]]
+path = "https://feeds.simplecast.com/BqbsxVfO"
+title = "99% Invisible"
+feed = true
+
+[[track]]
+path = "https://rss.acast.com/abroadinjapan"
+title = "Abroad in Japan"
+feed = true
+
+[[track]]
+path = "https://hackaday.libsyn.com/rss"
+title = "Hackaday Podcast"
+feed = true
+
+[[track]]
+path = "https://audioboom.com/channels/2399216.rss"
+title ="No Such Thing as a Fish"
+
+[[track]]
+path = "https://feeds.megaphone.fm/GLT6907573392"
+title = "The Rest is Science"
+feed = true
+
+[[track]]
+path = "https://audioboom.com/channels/5128892.rss"
+title = "Words Unravelled"

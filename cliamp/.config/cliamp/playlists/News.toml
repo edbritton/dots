@@ -1,0 +1,6 @@
+# ~/.config/cliamp/playlists/podcasts.toml
+
+[[track]]
+path = "https://podcast.voice.api.bbci.co.uk/rss/audio/p002vsmz?api_key=JqAy8fGqi8lpxLsr3WaGxyG31AZ5URMr"
+title = "BBC World Service Bulitin"
+feed = true

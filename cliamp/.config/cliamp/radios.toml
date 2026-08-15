@@ -1,0 +1,15 @@
+[[station]]
+name = "Public domain Lo-Fi"
+url = "https://soundcloud.com/cfs-mezzavia/sets/best-of-no-copyright-lo-fi"
+
+[[station]]
+name = "BBC Radio stations"
+url = "https://gist.github.com/bpsib/67089b959e4fa898af69fea59ad74bc3/raw/c7255834f326bc6a406080eed104ebaa9d3bc85d/BBC-Radio-HLS.m3u"
+
+[[station]]
+name = "BBC Radio stations (alt)"
+url = "https://gist.github.com/bpsib/67089b959e4fa898af69fea59ad74bc3/raw/c7255834f326bc6a406080eed104ebaa9d3bc85d/BBC-Radio-lstn-HLS-.m3u"
+
+[[station]]
+name = "BBC World Service stations"
+url = "https://gist.github.com/bpsib/67089b959e4fa898af69fea59ad74bc3/raw/c7255834f326bc6a406080eed104ebaa9d3bc85d/BBC-WorldService-MP3.m3u"
