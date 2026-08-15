@@ -1,3 +1,7 @@
+yt2mp4 () {
+  yt-dlp --add-chapters --embed-subs -t mp4 "https://youtu.be/$@"
+}
+
 rm() {
   command rm -v "$@" 2>&1 | nl -w2 -s". "
 }
@@ -73,6 +77,42 @@ format-drive() {
       echo "Drive $1 formatted as exFAT and labeled '$2'."
     fi
   fi
+}
+
+# Create a full-disk iso image from an sd card
+sd2iso() {
+  local compress=0
+
+  if [[ $1 == "--compress" ]]; then
+    compress=1
+    shift
+  fi
+
+  if (( $# < 1 )); then
+    echo "Usage: sd2iso [--compress] <input_device> [output_file]"
+    echo "Example: sd2iso /dev/sda ~/backups/sd-image.iso"
+    echo "         sd2iso --compress /dev/sda ~/backups/sd-image.iso.gz"
+    return 1
+  fi
+
+  local drive="$1"
+  local out
+  if [[ -n $2 ]]; then
+    out="$2"
+  elif (( compress )); then
+    out="./sd-image-$(date +%Y%m%d-%H%M%S).iso.gz"
+  else
+    out="./sd-image-$(date +%Y%m%d-%H%M%S).iso"
+  fi
+
+  if (( compress )); then
+    command -v gzip >/dev/null || { echo "gzip not found"; return 1; }
+    sudo dd bs=4M status=progress if="$drive" | gzip > "$out"
+  else
+    sudo dd bs=4M status=progress if="$drive" of="$out"
+  fi
+
+  echo "Wrote $out"
 }
 
 # Transcode a video to a good-balance 1080p that's great for sharing online
