@@ -1,3 +1,111 @@
+# Measure WAN speed with networkQuality and plot it against familiar markers
+speedtest() {
+  if ! command -v networkQuality >/dev/null; then
+    print -u2 "speedtest: networkQuality not found (macOS only)"
+    return 1
+  fi
+
+  if ! command -v jq >/dev/null; then
+    print -u2 "speedtest: jq not found"
+    return 1
+  fi
+
+  print -u2 "Testing WAN… this takes roughly 20–40 seconds"
+
+  local json
+  json=$(networkQuality -c "$@") || {
+    print -u2 "speedtest: networkQuality failed"
+    return 1
+  }
+
+  local parsed dl ul rtt rpm iface err
+  parsed=$(print -r -- "$json" | jq -r '[
+    (if .dl_throughput then .dl_throughput * 8 / 1000000 else -1 end),
+    (if .ul_throughput then .ul_throughput * 8 / 1000000 else -1 end),
+    (.base_rtt // 0),
+    (.responsiveness // 0),
+    (.interface_name // "?"),
+    (.error_code // "")
+  ] | @tsv') || {
+    print -u2 "speedtest: could not parse networkQuality output"
+    return 1
+  }
+
+  IFS=$'\t' read -r dl ul rtt rpm iface err <<< "$parsed"
+
+  if [[ "$dl" == "-1" && "$ul" == "-1" ]]; then
+    print -u2 "speedtest: networkQuality returned no measurements${err:+ (error $err)}"
+    return 1
+  fi
+
+  awk -v dl="$dl" -v ul="$ul" -v rtt="$rtt" -v rpm="$rpm" -v iface="$iface" '
+    function rep(s, n,   r) { r = ""; while (n-- > 0) r = r s; return r }
+    function pos(v) {
+      if (v <= LO) return 0
+      if (v >= HI) return W - 1
+      return int(log(v / LO) / log(10) / SPAN * (W - 1) + 0.5)
+    }
+    function bar(v,   p) {
+      if (v < 0) return ""
+      if (v <= 0) return rep("░", W)
+      p = pos(v)
+      return rep("█", p + 1) rep("░", W - p - 1)
+    }
+    function speed(v) {
+      if (v < 0) return "not tested"
+      if (v >= 1000) return sprintf("%.0f Mbps", v)
+      return sprintf("%.1f Mbps", v)
+    }
+    function ticks(   s, i, k, hit) {
+      s = ""
+      for (i = 0; i < W; i++) {
+        hit = 0
+        for (k = 1; k <= N; k++)
+          if (mark[k] == i) hit = 1
+        s = s (hit ? "│" : " ")
+      }
+      return s
+    }
+    function labels(   s, k, l, start) {
+      s = rep(" ", W)
+      for (k = 1; k <= N; k++) {
+        l = length(name[k])
+        start = mark[k] - int(l / 2)
+        if (start < 0) start = 0
+        if (start + l > W) start = W - l
+        s = substr(s, 1, start) name[k] substr(s, start + l + 1)
+      }
+      return s
+    }
+    BEGIN {
+      W = 67; LO = 0.05; HI = 16000; SPAN = log(HI / LO) / log(10); N = 10
+      split("56k:0.056 8:8 24:24 50:50 100:100 250:250 500:500 1G:1000 2.5G:2500 10G:10000", m, " ")
+      for (k = 1; k <= N; k++) {
+        split(m[k], a, ":")
+        name[k] = a[1]
+        mark[k] = pos(a[2])
+      }
+
+      printf "%s %10s %s\n", "↓", speed(dl), bar(dl)
+      printf "%s %10s %s\n", "↑", speed(ul), bar(ul)
+      printf "%13s%s\n", "Mbps", ticks()
+      printf "%13s%s\n", "", labels()
+
+      lat = (rtt > 0) ? sprintf("%.1f ms", rtt) : "n/a"
+      resp = (rpm > 0) ? sprintf("%.0f RPM", rpm) : "n/a"
+      printf "\n  Idle latency %s · Responsiveness %s · %s\n", lat, resp, iface
+
+      print ""
+      print "  ### SCALE ###"
+      n = split("56k=dial-up;8=3G;24=ADSL2+ / 4G;50=NBN 50;100=NBN 100 / 5G;250=NBN 250;500=Wi-Fi 5;1G=NBN 1000 / gigabit Ethernet / Wi-Fi 6;2.5G=2.5GbE;10G=10GbE", legend, ";")
+      for (k = 1; k <= n; k++) {
+        split(legend[k], a, "=")
+        printf "  %5s   %s\n", a[1], a[2]
+      }
+    }
+  '
+}
+
 yt2mp4 () {
   yt-dlp --add-chapters --embed-subs -t mp4 "https://youtu.be/$@"
 }
