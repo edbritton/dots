@@ -88,7 +88,7 @@ for char in $(echo "$input" | grep -o .); do
 done
 
 # repeating echo for cross compatibility issue
-echo "$r1"
-echo "$r2"
-echo "$r3"
-echo "$r4"
+echo "\033[34m$r1\033[0m"
+echo "\033[34m$r2\033[0m"
+echo "\033[34m$r3\033[0m"
+echo "\033[34m$r4\033[0m"
