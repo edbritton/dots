@@ -1,0 +1,47 @@
+# skhd binds for window management
+# Kanpai edition
+
+# Kanpai auto-arrange
+fn - k : kanpai action apply --do
+
+# square and centre this window
+fn + ctrl + lalt - c : kanpai move centre
+
+### FOCUS ###
+# focus window in direction
+lcmd - left  : kanpai focus window left
+lcmd - down  : kanpai focus window down
+lcmd - up    : kanpai focus window up
+lcmd - right : kanpai focus window right
+
+# cycle through stacked windows
+fn - tab : kanpai focus window z-cycle
+
+### MOVE ###
+# swap with window in direction, or move to display beyond edge
+shift + lcmd - left  : kanpai move left  || kanpai move display left
+shift + lcmd - down  : kanpai move down  || kanpai move display down
+shift + lcmd - up    : kanpai move up    || kanpai move display up
+shift + lcmd - right : kanpai move right || kanpai move display right
+
+### SPACES ###
+# move to space
+shift + ctrl - left  : kanpai move space prev
+shift + ctrl - 1     : kanpai move space 1
+shift + ctrl - 2     : kanpai move space 2
+shift + ctrl - 3     : kanpai move space 3
+shift + ctrl - 4     : kanpai move space 4
+shift + ctrl - right : kanpai move space next
+
+# focus on right-most in-use space
+ctrl - 9 : sh ~/.config/kanpai/change_space.sh last
+
+# cycle through spaces
+ctrl - tab [
+  "Messages" ~
+  * : sh ~/.config/kanpai/change_space.sh next
+]
+shift + ctrl - tab [
+  "Messages" ~
+  * : sh ~/.config/kanpai/change_space.sh prev
+]
